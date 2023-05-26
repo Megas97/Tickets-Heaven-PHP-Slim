@@ -1,0 +1,7 @@
+<div class="text-center text-danger mt-3 bg-warning happening-text {% if page == 'event-details' or page == 'order-details' %}img-text {% endif %}d-none">
+    <p class="happening-paragraph">{{ (type != 'inactive' and type != 'rejected' and event.host_id != 0 and event.venue_id != 0 and event.owner_approved == true and (event.participants is null or (event.participants is not null and event.participants | filter(p => p.pivot.artist_approved == true) | length > 0))) ? 'HAPPENING NOW!' : 'Would have been happening now!' }}</p>
+</div>
+<input type="hidden" class="start-date" value="{{ date(event.start_date ~ ' ' ~ event.start_time) | date("d.m.Y") }}">
+<input type="hidden" class="start-time" value="{{ date(event.start_date ~ ' ' ~ event.start_time) | date("H:i") }}">
+<input type="hidden" class="end-date" value="{{ date(event.end_date ~ ' ' ~ event.end_time) | date("d.m.Y") }}">
+<input type="hidden" class="end-time" value="{{ date(event.end_date ~ ' ' ~ event.end_time) | date("H:i") }}">

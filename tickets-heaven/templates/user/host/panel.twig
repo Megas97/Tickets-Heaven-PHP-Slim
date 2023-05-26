@@ -1,0 +1,39 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Host Panel
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Host Panel</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row margin-top-minus-10">
+        <div class="col-sm-12 text-center">
+            <button type="button" id="add-event-button" name="add-event-button" class="btn btn-secondary d-inline-flex align-items-center"><i class="fa fa-plus me-2"></i>Add Event</button>
+        </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        <button type="button" id="active-events-button" name="active_events_button" class="image-button btn btn-secondary bg-success d-flex flex-column panel-button img-fluid me-md-5 mt-md-5">
+            <img src="uploads/default-pictures/events-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Active Events</strong></span>
+        </button>
+        <button type="button" id="inactive-events-button" name="inactive_events_button" class="image-button btn btn-secondary bg-danger d-flex flex-column panel-button img-fluid me-md-5 mt-4 mt-md-5">
+            <img src="uploads/default-pictures/events-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Inactive Events</strong></span>
+        </button>
+        <button type="button" id="promotions-button" name="promotions_button" class="image-button btn btn-secondary bg-info d-flex flex-column panel-button img-fluid mt-4 mt-md-5">
+            <img src="uploads/default-pictures/promotions-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Promotions</strong></span>
+        </button>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/user/host/panel.js"></script>
+{% endblock %}

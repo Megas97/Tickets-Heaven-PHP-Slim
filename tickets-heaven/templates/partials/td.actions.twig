@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+
+    {% if id and not username %}
+        
+        <button type="button" class="btn btn-primary me-1" onclick="location.href='{{ url_for(url, {'id': id}) }}';"><i class="fa fa-eye"></i></button>
+
+        {% if url == 'event.details' %}
+
+            <button type="button" class="btn btn-success me-1 datatable-add-button" data-id="{{ id }}" data-action="add"><i class="fa fa-plus"></i></button>
+
+            <button type="button" class="btn btn-secondary me-1 datatable-subtract-button" data-id="{{ id }}" data-action="subtract"><i class="fa fa-minus"></i></button>
+
+        {% endif %}
+
+        {% if url != 'order.details' %}
+
+            <button type="button" class="btn btn-danger datatable-delete-button" data-id="{{ id }}"><i class="fa fa-trash"></i></button>
+
+        {% endif %}
+
+    {% else %}
+        
+        {% if username %}
+
+            {% if url != 'admin.users.view.order.details' %}
+
+                <button type="button" class="btn btn-primary me-1" onclick="location.href='{{ url_for(url, {'username': username}) }}';"><i class="fa fa-eye"></i></button>
+
+            {% else %}
+
+                <button type="button" class="btn btn-primary me-1" onclick="location.href='{{ url_for(url, {'username': username, 'id': id}) }}';"><i class="fa fa-eye"></i></button>
+
+            {% endif %}
+
+            {% if orders %}
+
+                <button type="button" class="btn btn-secondary me-1" onclick="location.href='{{ url_for(orders, {'username': username}) }}';"><i class="fa fa-shopping-basket"></i></button>
+
+            {% endif %}
+
+            {% if url != 'order.details' and url != 'admin.users.view.order.details' %}
+
+                <button type="button" class="btn btn-danger datatable-delete-button" data-username="{{ username }}"><i class="fa fa-trash"></i></button>
+
+            {% endif %}
+
+        {% endif %}
+
+    {% endif %}
+</div>

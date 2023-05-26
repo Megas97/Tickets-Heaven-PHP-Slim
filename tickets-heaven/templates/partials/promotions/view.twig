@@ -1,0 +1,103 @@
+<div class="mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+
+            {% if type == 'admin' %}
+
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.promotions') }}">Promotions</a></li>
+
+            {% elseif type == 'host' %}
+
+                <li class="breadcrumb-item"><a href="{{ url_for('host.panel') }}">Host Panel</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('host.promotions') }}">Promotions</a></li>
+
+            {% endif %}
+
+            <li class="breadcrumb-item active" aria-current="page">View Promo Code</li>
+        </ol>
+    </nav>
+</div>
+<div class="card bg-light border-0 margin-top-minus-10">
+    <article class="card-body medium-card-body text-center mx-auto">
+        <h4 class="card-title text-center margin-top-minus-10">Promo Code Details</h4>
+        <p class="text-center">View or change promo code details</p>
+
+        <form id="view-promo-code-form" action="{{ url_for(type ~ '.promotions.view', { id: promoCode.id }) }}" method="post" enctype="multipart/form-data">
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text unselectable" title="Promo code"><i class="fa fa-font"></i></span>
+                </div>
+
+                <button type="button" id="generate-promo-code" class="btn btn-secondary">Generate</button>
+
+                <input type="text" id="code" name="code" class="form-control" value="" placeholder="{{ promoCode.code ? promoCode.code : 'Promo code'}}">
+
+                <div class="input-group-append">
+                    <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ promoCode.code ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text unselectable" title="Event"><i class="fa fa-user"></i></span>
+                </div>
+                
+                <select data-live-search="true" id="event" name="event" class="custom-select selectpicker" data-width="calc(100% - 42px)">
+                    <option disabled value="Event" {{ (promoCode.event_id == 0 or promoCode.event.deleted_at) ? 'selected' : '' }}>Event</option>
+
+                    {% for event in events %}
+
+                        <option value="{{ event.id }}" {{ event.id == promoCode.event_id ? 'selected' : '' }}>{{ event.name }} - {{ event.ticket_price }} {{ event.currency.code }}</option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="Promo percent"><i class="fas fa-percent"></i></span>
+                </div>
+
+                <input type="number" id="percent" name="percent" class="form-control" step="0.1" lang="en" value="" placeholder="{{ promoCode.percent ? promoCode.percent | number_format(2) : 'Promo percent' }}">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-secondary copy-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+            
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="Discounted ticket price"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+
+                <input type="text" disabled id="discounted-ticket-price" name="discounted_ticket_price" class="form-control" value="{{ discountedTicketPrice ? discountedTicketPrice | number_format(2) ~ ' ' ~ promoCode.event.currency.code : 'Discounted ticket price' }}">
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text unselectable" title="Deadline"><i class="fa fa-clock"></i></span>
+                </div>
+                <input type="datetime-local" id="deadline" name="deadline" class="form-control" value="{{ deadline ? deadline : '' }}">
+            </div>
+
+            <input type="hidden" id="current-id" name="current_id" value="{{ promoCode.id }}">
+
+            <div class="d-flex flex-column flex-sm-row">
+                <div class="form-group text-center mx-auto mt-1">
+                    <button type="submit" id="update-promo-code-button" name="update_promo_code_button" class="btn btn-primary btn-block">Edit Details</button>
+                </div>
+
+                <div class="form-group text-center mx-auto mt-1">
+                    <button type="submit" id="delete-promo-code-button" name="delete_promo_code_button" class="btn btn-danger btn-block">Delete Promo Code</button>
+                </div>
+            </div>
+
+            {{ csrf.ajax | raw }}
+            
+        </form>
+    </article>
+</div>

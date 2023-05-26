@@ -1,0 +1,348 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    {{ user.username == auth.user.username ? 'My Settings' : user.username ~ '\'s Settings' }}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+
+                {% if user.username != auth.user.username %}
+
+                    <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('admin.users') }}">Users</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('admin.users.view', { username: user.username }) }}">View User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">User Settings</li>
+
+                {% else %}
+
+                    <li class="breadcrumb-item active" aria-current="page">My Settings</li>
+
+                {% endif %}
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-light border-0 margin-top-minus-10">
+        <article class="card-body text-center mx-auto">
+            <h4 class="card-title text-center margin-top-minus-10">User Settings</h4>
+
+            {% if user.username == auth.user.username %}
+
+                <p class="text-center">View or change your settings</p>
+
+            {% else %}
+
+                <p class="text-center">View or change <a href="{{ url_for('admin.users.view', { username: user.username }) }}">{{ user.getFullName() }}</a>'s settings</p>
+
+            {% endif %}
+
+            <form id="view-settings-form" action="{{ user.username == auth.user.username ? url_for('settings') : url_for('settings', { username: user.username }) }}" method="post" enctype="multipart/form-data">
+                
+                <hr>
+                <div class="d-md-flex flex-column">
+                    <div class="col-md-12">
+                        <h5 class="card-title mt-3 text-center">Currency Settings</h5>
+                        <p>Change which currency you see for prices around the site</p>
+                    </div>
+                    <div class="col-md-6 offset-md-3">
+                        <div class="d-inline-block text-start">
+                            <div class="form-check d-inline-block has-validation">
+                                <input type="radio" class="form-check-input checkbox-fix" {{ user.setting('currency') is null or user.setting('currency') == 1 ? 'checked' : '' }} id="show-site-currency" name="currency" value="1">
+                                <label for="show-site-currency" class="unselectable">Show site currency</label>
+                            </div>
+                            <br>
+                            <div class="form-check d-inline-block has-validation">
+                                <input type="radio" class="form-check-input checkbox-fix" {{ user.setting('currency') == 2 ? 'checked' : '' }} id="show-chosen-currency" name="currency" value="2">
+                                <label for="show-chosen-currency" class="unselectable">Show chosen currency</label>
+                            </div>
+                            <br>
+                            <div class="form-check d-inline-block has-validation">
+                                <input type="radio" class="form-check-input checkbox-fix" {{ user.setting('currency') == 3 ? 'checked' : '' }} id="show-both-currency" name="currency" value="3">
+                                <label for="show-both-currency" class="unselectable">Show site & chosen currencies</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="d-md-flex">
+                    <div class="col-md-{{ user.isOwner() or user.isHost() or user.isArtist() ? '6' : '12' }}">
+                        <div class="w-100">
+                            <h5 class="card-title mt-3 text-center">User Email Settings</h5>
+                            <p>Change which emails you receive for events which you are going to attend</p>
+                            <div class="d-inline-block text-start">
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'hostChanged') is null or user.setting('email', 'user', 'hostChanged') == 1 ? 'checked' : '' }} id="event-host-changed-email" name="event_host_changed_email" value="1">
+                                    <label for="event-host-changed-email" class="unselectable">Toggle event host changed emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'hostDeleted') is null or user.setting('email', 'user', 'hostDeleted') == 1 ? 'checked' : '' }} id="event-host-deleted-email" name="event_host_deleted_email" value="1">
+                                    <label for="event-host-deleted-email" class="unselectable">Toggle event host deleted emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'venueSet') is null or user.setting('email', 'user', 'venueSet') == 1 ? 'checked' : '' }} id="event-venue-restored-email" name="event_venue_restored_email" value="1">
+                                    <label for="event-venue-restored-email" class="unselectable">Toggle event venue restored emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'eventUpdatedHost') is null or user.setting('email', 'user', 'eventUpdatedHost') == 1 ? 'checked' : '' }} id="event-venue-changed-email" name="event_venue_changed_email" value="1">
+                                    <label for="event-venue-changed-email" class="unselectable">Toggle event venue changed emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'venueDeleted') is null or user.setting('email', 'user', 'venueDeleted') == 1 ? 'checked' : '' }} id="event-venue-deleted-email" name="event_venue_deleted_email" value="1">
+                                    <label for="event-venue-deleted-email" class="unselectable">Toggle event venue deleted emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'eventDeleted') is null or user.setting('email', 'user', 'eventDeleted') == 1 ? 'checked' : '' }} id="event-deleted-email" name="event_deleted_email" value="1">
+                                    <label for="event-deleted-email" class="unselectable">Toggle event deleted emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'ownerApproved') is null or user.setting('email', 'user', 'ownerApproved') == 1 ? 'checked' : '' }} id="owner-approved-event-email" name="owner_approved_event_email" value="1">
+                                    <label for="owner-approved-event-email" class="unselectable">Toggle venue owner approved event emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'ownerRejected') is null or user.setting('email', 'user', 'ownerRejected') == 1 ? 'checked' : '' }} id="owner-rejected-event-email" name="owner_rejected_event_email" value="1">
+                                    <label for="owner-rejected-event-email" class="unselectable">Toggle venue owner rejected event emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'artistApproved') is null or user.setting('email', 'user', 'artistApproved') == 1 ? 'checked' : '' }} id="artist-approved-event-email" name="artist_approved_event_email" value="1">
+                                    <label for="artist-approved-event-email" class="unselectable">Toggle artist approved to be in event emails</label>
+                                </div>
+                                <br>
+                                <div class="form-check d-inline-block has-validation">
+                                    <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'user', 'artistRejected') is null or user.setting('email', 'user', 'artistRejected') == 1 ? 'checked' : '' }} id="artist-rejected-event-email" name="artist_rejected_event_email" value="1">
+                                    <label for="artist-rejected-event-email" class="unselectable">Toggle artist rejected to be in event emails</label>
+                                </div>
+                            </div>
+                            <hr class="d-md-none">
+                        </div>
+                    </div>
+
+                    {% if user.isOwner() %}
+
+                        <div class="col-md-6">
+                            <div class="w-100">
+                                <h5 class="card-title mt-3 text-center">Owner Email Settings</h5>
+                                <p>Change which emails you receive for your venues and for events which are hosted in your venues</p>
+                                <div class="d-inline-block text-start">
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'venueDeleted') is null or user.setting('email', 'owner', 'venueDeleted') == 1 ? 'checked' : '' }} id="venue-deleted-email" name="venue_deleted_email" value="1">
+                                        <label for="venue-deleted-email" class="unselectable">Toggle venue deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'eventDeleted') is null or user.setting('email', 'owner', 'eventDeleted') == 1 ? 'checked' : '' }} id="event-in-venue-deleted-email" name="event_in_venue_deleted_email" value="1">
+                                        <label for="event-in-venue-deleted-email" class="unselectable">Toggle event in your venue deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'artistApproved') is null or user.setting('email', 'owner', 'artistApproved') == 1 ? 'checked' : '' }} id="artist-approved-event-in-venue-email" name="artist_approved_event_in_venue_email" value="1">
+                                        <label for="artist-approved-event-in-venue-email" class="unselectable">Toggle artist approved to be in event at your venue emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'artistRejected') is null or user.setting('email', 'owner', 'artistRejected') == 1 ? 'checked' : '' }} id="artist-rejected-event-in-venue-email" name="artist_rejected_event_in_venue_email" value="1">
+                                        <label for="artist-rejected-event-in-venue-email" class="unselectable">Toggle artist rejected to be in event at your venue emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'hostDeleted') is null or user.setting('email', 'owner', 'hostDeleted') == 1 ? 'checked' : '' }} id="host-deleted-event-in-venue-email" name="host_deleted_event_in_venue_email" value="1">
+                                        <label for="host-deleted-event-in-venue-email" class="unselectable">Toggle host deleted for event at your venue emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'hostSet') is null or user.setting('email', 'owner', 'hostSet') == 1 ? 'checked' : '' }} id="host-set-event-in-venue-email" name="host_set_event_in_venue_email" value="1">
+                                        <label for="host-set-event-in-venue-email" class="unselectable">Toggle host restored for event at your venue emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'artistDeleted') is null or user.setting('email', 'owner', 'artistDeleted') == 1 ? 'checked' : '' }} id="artist-deleted-event-in-venue-email" name="artist_deleted_event_in_venue_email" value="1">
+                                        <label for="artist-deleted-event-in-venue-email" class="unselectable">Toggle artist deleted for event at your venue emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'owner', 'eventAddRequested') is null or user.setting('email', 'owner', 'eventAddRequested') == 1 ? 'checked' : '' }} id="host-add-event-in-venue-email" name="host_add_event_in_venue_email" value="1">
+                                        <label for="host-add-event-in-venue-email" class="unselectable">Toggle event creation request at your venue emails</label>
+                                    </div>
+                                </div>
+                                <hr class="d-md-none">
+                            </div>
+                        </div>
+
+                    {% elseif user.isHost() %}
+
+                        <div class="col-md-6">
+                            <div class="w-100">
+                                <h5 class="card-title mt-3 text-center">Host Email Settings</h5>
+                                <p>Change which emails you receive for events which you are hosting</p>
+                                <div class="d-inline-block text-start">
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'venueSet') is null or user.setting('email', 'host', 'venueSet') == 1 ? 'checked' : '' }} id="host-event-venue-restored-email" name="host_event_venue_restored_email" value="1">
+                                        <label for="host-event-venue-restored-email" class="unselectable">Toggle venue restored emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'eventDeleted') is null or user.setting('email', 'host', 'eventDeleted') == 1 ? 'checked' : '' }} id="host-event-deleted-email" name="host_event_deleted_email" value="1">
+                                        <label for="host-event-deleted-email" class="unselectable">Toggle event deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'venueDeleted') is null or user.setting('email', 'host', 'venueDeleted') == 1 ? 'checked' : '' }} id="host-event-venue-deleted-email" name="host_event_venue_deleted_email" value="1">
+                                        <label for="host-event-venue-deleted-email" class="unselectable">Toggle event venue deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'ownerDeleted') is null or user.setting('email', 'host', 'ownerDeleted') == 1 ? 'checked' : '' }} id="host-event-venue-owner-deleted-email" name="host_event_venue_owner_deleted_email" value="1">
+                                        <label for="host-event-venue-owner-deleted-email" class="unselectable">Toggle event venue owner deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'ownerSet') is null or user.setting('email', 'host', 'ownerSet') == 1 ? 'checked' : '' }} id="host-event-venue-owner-restored-email" name="host_event_venue_owner_restored_email" value="1">
+                                        <label for="host-event-venue-owner-restored-email" class="unselectable">Toggle event venue owner restored emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'ownerApproved') is null or user.setting('email', 'host', 'ownerApproved') == 1 ? 'checked' : '' }} id="host-owner-approved-event-email" name="host_owner_approved_event_email" value="1">
+                                        <label for="host-owner-approved-event-email" class="unselectable">Toggle venue owner approved event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'ownerRejected') is null or user.setting('email', 'host', 'ownerRejected') == 1 ? 'checked' : '' }} id="host-owner-rejected-event-email" name="host_owner_rejected_event_email" value="1">
+                                        <label for="host-owner-rejected-event-email" class="unselectable">Toggle venue owner rejected event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'artistApproved') is null or user.setting('email', 'host', 'artistApproved') == 1 ? 'checked' : '' }} id="host-artist-approved-event-email" name="host_artist_approved_event_email" value="1">
+                                        <label for="host-artist-approved-event-email" class="unselectable">Toggle artist approved to be in your event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'artistRejected') is null or user.setting('email', 'host', 'artistRejected') == 1 ? 'checked' : '' }} id="host-artist-rejected-event-email" name="host_artist_rejected_event_email" value="1">
+                                        <label for="host-artist-rejected-event-email" class="unselectable">Toggle artist rejected to be in your event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'artistDeleted') is null or user.setting('email', 'host', 'artistDeleted') == 1 ? 'checked' : '' }} id="host-artist-deleted-email" name="host_artist_deleted_email" value="1">
+                                        <label for="host-artist-deleted-email" class="unselectable">Toggle artist deleted for your event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'eventAdded') is null or user.setting('email', 'host', 'eventAdded') == 1 ? 'checked' : '' }} id="host-admin-added-event-host-email" name="host_admin_added_event_host_email" value="1">
+                                        <label for="host-admin-added-event-host-email" class="unselectable">Toggle admin has added you as host for an event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'host', 'eventUpdatedAdmin') is null or user.setting('email', 'host', 'eventUpdatedAdmin') == 1 ? 'checked' : '' }} id="host-admin-moved-event-new-venue-email" name="host_admin_moved_event_new_venue_email" value="1">
+                                        <label for="host-admin-moved-event-new-venue-email" class="unselectable">Toggle admin has moved your event to a new venue emails</label>
+                                    </div>
+                                    <br>
+                                </div>
+                                <hr class="d-md-none">
+                            </div>
+                        </div>
+
+                    {% elseif user.isArtist() %}
+
+                        <div class="col-md-6">
+                            <div class="w-100">
+                                <h5 class="card-title mt-3 text-center">Artist Email Settings</h5>
+                                <p>Change which emails you receive for events which you are participating in</p>
+                                <div class="d-inline-block text-start">
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'ownerSet') is null or user.setting('email', 'artist', 'ownerSet') == 1 ? 'checked' : '' }} id="artist-event-venue-owner-restored-email" name="artist_event_venue_owner_restored_email" value="1">
+                                        <label for="artist-event-venue-owner-restored-email" class="unselectable">Toggle event venue owner restored emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'venueDeleted') is null or user.setting('email', 'artist', 'venueDeleted') == 1 ? 'checked' : '' }} id="artist-event-venue-deleted-email" name="artist_event_venue_deleted_email" value="1">
+                                        <label for="artist-event-venue-deleted-email" class="unselectable">Toggle event venue deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'ownerDeleted') is null or user.setting('email', 'artist', 'ownerDeleted') == 1 ? 'checked' : '' }} id="artist-event-venue-owner-deleted-email" name="artist_event_venue_owner_deleted_email" value="1">
+                                        <label for="artist-event-venue-owner-deleted-email" class="unselectable">Toggle event venue owner deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'hostChanged') is null or user.setting('email', 'artist', 'hostChanged') == 1 ? 'checked' : '' }} id="artist-event-host-changed-email" name="artist_event_host_changed_email" value="1">
+                                        <label for="artist-event-host-changed-email" class="unselectable">Toggle event host changed emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'venueSet') is null or user.setting('email', 'artist', 'venueSet') == 1 ? 'checked' : '' }} id="artist-event-venue-restored-email" name="artist_event_venue_restored_email" value="1">
+                                        <label for="artist-event-venue-restored-email" class="unselectable">Toggle event venue restored emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'eventDeleted') is null or user.setting('email', 'artist', 'eventDeleted') == 1 ? 'checked' : '' }} id="artist-event-deleted-email" name="artist_event_deleted_email" value="1">
+                                        <label for="artist-event-deleted-email" class="unselectable">Toggle event deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'ownerApproved') is null or user.setting('email', 'artist', 'ownerApproved') == 1 ? 'checked' : '' }} id="artist-venue-owner-approved-event-email" name="artist_venue_owner_approved_event_email" value="1">
+                                        <label for="artist-venue-owner-approved-event-email" class="unselectable">Toggle venue owner approved event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'ownerRejected') is null or user.setting('email', 'artist', 'ownerRejected') == 1 ? 'checked' : '' }} id="artist-venue-owner-rejected-event-email" name="artist_venue_owner_rejected_event_email" value="1">
+                                        <label for="artist-venue-owner-rejected-event-email" class="unselectable">Toggle venue owner rejected event emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'hostDeleted') is null or user.setting('email', 'artist', 'hostDeleted') == 1 ? 'checked' : '' }} id="artist-event-host-deleted-email" name="artist_event_host_deleted_email" value="1">
+                                        <label for="artist-event-host-deleted-email" class="unselectable">Toggle event host deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'hostSet') is null or user.setting('email', 'artist', 'hostSet') == 1 ? 'checked' : '' }} id="artist-event-host-restored-email" name="artist_event_host_restored_email" value="1">
+                                        <label for="artist-event-host-restored-email" class="unselectable">Toggle event host restored emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'artistDeleted') is null or user.setting('email', 'artist', 'artistDeleted') == 1 ? 'checked' : '' }} id="artist-event-participant-deleted-email" name="artist_event_participant_deleted_email" value="1">
+                                        <label for="artist-event-participant-deleted-email" class="unselectable">Toggle event participant deleted emails</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check d-inline-block has-validation">
+                                        <input type="checkbox" class="form-check-input checkbox-fix" {{ user.setting('email', 'artist', 'artistPending') is null or user.setting('email', 'artist', 'artistPending') == 1 ? 'checked' : '' }} id="artist-event-participant-added-email" name="artist_event_participant_added_email" value="1">
+                                        <label for="artist-event-participant-added-email" class="unselectable">Toggle you have been added to participate in an event emails</label>
+                                    </div>
+                                    <br>
+                                </div>
+                                <hr class="d-md-none">
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <hr class="d-none d-md-block">
+                <div class="form-group text-center mt-3">
+                    <button type="submit" id="update-settings-button" name="update_settings_button" class="btn btn-primary btn-block">Save Settings</button>
+                </div>
+
+                {{ csrf.ajax | raw }}
+                
+            </form>
+        </article>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/user/settings.js"></script>
+{% endblock %}

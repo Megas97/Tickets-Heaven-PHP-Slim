@@ -1,0 +1,247 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    My Profile
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-light border-0 margin-top-minus-10">
+        <article class="card-body wide-card-body text-center mx-auto pb-md-0">
+            <h4 class="card-title text-center margin-top-minus-10">User Details</h4>
+            <p class="text-center">View or change your personal details</p>
+
+            <div class="text-center">
+
+                <form id="github-link-form" class="d-inline-block" action="" method="post">
+
+                    {% if not user.github_id %}
+
+                        <input type="hidden" id="link-social-media" name="link-social-media" value="yes" />
+                        <button type="submit" data-type="GitHub" class="btn btn-block btn-github mt-1 mb-1"><i class="fab fa-github"></i>  <span>Link GitHub</span></button>
+
+                    {% else %}
+
+                        <input type="hidden" id="unlink-social-media" name="unlink-social-media" value="yes" />
+                        <button type="submit" data-type="GitHub" class="btn btn-block btn-github mt-1 mb-1"><i class="fab fa-github"></i>  <span>Unlink GitHub</span></button>
+
+                    {% endif %}
+
+                    {{ csrf.ajax | raw }}
+
+                </form>
+
+                <form id="facebook-link-form" class="d-inline-block" action="" method="post">
+
+                    {% if not user.facebook_id %}
+
+                        <input type="hidden" id="link-social-media" name="link-social-media" value="yes" />
+                        <button type="submit" data-type="Facebook" class="btn btn-block btn-facebook mt-1 mb-1"><i class="fab fa-facebook-f"></i>  <span>Link Facebook</span></button>
+
+                    {% else %}
+
+                        <input type="hidden" id="unlink-social-media" name="unlink-social-media" value="yes" />
+                        <button type="submit" data-type="Facebook" class="btn btn-block btn-facebook mt-1 mb-1"><i class="fab fa-facebook-f"></i>  <span>Unlink Facebook</span></button>
+
+                    {% endif %}
+
+                    {{ csrf.ajax | raw }}
+
+                </form>
+
+            </div>
+
+            <p></p>
+
+            <form id="profile-form" action="{{ url_for('profile') }}" method="post" enctype="multipart/form-data">
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation me-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Username"><i class="fa fa-user"></i></span>
+                        </div>
+
+                        <input type="text" id="username" name="username" class="form-control" value="" placeholder="{{ user.username ? user.username : 'Username'}}">
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.username ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-group mb-1 has-validation ms-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Email"><i class="fa fa-envelope"></i></span>
+                        </div>
+
+                        <input type="email" id="email" name="email" class="form-control" value="" placeholder="{{ user.email ? user.email : 'Email' }}">
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.email ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation me-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="First name"><i class="fa fa-user"></i></span>
+                        </div>
+
+                        <input type="text" id="first-name" name="first_name" class="form-control" value="" placeholder="{{ user.first_name ? user.first_name : 'First name' }}">
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.first_name ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-group mb-1 has-validation ms-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Last name"><i class="fa fa-user"></i></span>
+                        </div>
+
+                        <input type="text" id="last-name" name="last_name" class="form-control" value="" placeholder="{{ user.last_name ? user.last_name : 'Last name' }}">
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.last_name ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation me-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Phone number"><i class="fa fa-phone"></i></span>
+                        </div>
+
+                        <select data-live-search="true" id="phone-code-id" name="phone_code_id" class="custom-select selectpicker" data-width="82px">
+                            <option {{ (not user.phone_code_id) ? 'selected' : '' }} disabled value="+XXX">+XXX</option>
+
+                            {% for phone_code in phone_codes %}
+
+                                <option value="{{ phone_code.id }}" {{ user.phone_code_id == phone_code.id ? 'selected' : '' }}>{{ phone_code.code }}</option>
+
+                            {% endfor %}
+                            
+                        </select>
+
+                        <input type="number" id="phone-number" name="phone_number" min="0" class="form-control" value="" placeholder="{{ user.phone_number ? user.phone_number : 'Phone number' }}">
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.phone_number ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-group mb-1 has-validation ms-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Credit card number"><i class="fas fa-credit-card"></i></span>
+                        </div>
+
+                        <input type="number" id="credit-card-number" name="credit_card_number" min="0" class="form-control" value="" placeholder="{{ user.credit_card_number ? user.credit_card_number : 'Credit card number' }}">
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.credit_card_number ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation me-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Address"><i class="fa fa-address-card"></i></span>
+                        </div>
+
+                        <textarea rows="5" type="text" id="address" name="address" class="form-control" value="" placeholder="{{ user.address ? user.address : 'Address' }}"></textarea>
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.address ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-group mb-1 has-validation ms-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Description"><i class="fa fa-info-circle"></i></span>
+                        </div>
+
+                        <textarea rows="5" type="text" id="description" name="description" class="form-control" value="" placeholder="{{ user.description ? user.description : 'Description' }}"></textarea>
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ user.description ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation ms-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text unselectable" title="Default currency"><i class="fas fa-dollar-sign"></i></span>
+                        </div>
+                        <select data-live-search="true" id="default-currency-id" name="default_currency_id" class="custom-select selectpicker" data-width="calc(100% - 42px)">
+                            <option  {{ (not user.default_currency_id) ? 'selected' : '' }} disabled value="Default currency">Default currency</option>
+
+                            {% for currency in currencies %}
+
+                                <option value="{{ currency.id }}" {{ user.default_currency_id == currency.id ? 'selected' : '' }}>{{ currency.code }}</option>
+
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                    <div class="form-group input-group mb-1 me-md-1 h-100">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Profile picture"><i class="fa fa-upload"></i></span>
+                        </div>
+                        
+                        <input type="file" accept="image/*" id="profile-picture" name="profile_picture" class="form-control">
+                    </div>
+                </div>
+                <div class="d-md-flex justify-content-md-between text-center">
+                    <div class="form-check d-inline-block text-start">
+                        <input class="form-check-input checkbox-fix" {{ user.phone_number ? '' : 'disabled' }} type="checkbox" id="remove-phone-number" name="remove_phone_number" value="yes">
+                        <label class="form-check-label unselectable" for="remove-phone-number">Remove Phone Number</label>
+                    </div>
+                    <br>
+                    <div class="form-check d-inline-block text-start ">
+                        <input class="form-check-input checkbox-fix" {{ user.credit_card_number ? '' : 'disabled' }} type="checkbox" id="remove-credit-card-number" name="remove_credit_card_number" value="yes">
+                        <label class="form-check-label unselectable" for="remove-credit-card-number">Remove Credit Card Number</label>
+                    </div>
+                    <br>
+                    <div class="form-check d-inline-block text-start">
+                        <input class="form-check-input checkbox-fix" {{ user.profile_picture ? '' : 'disabled' }} type="checkbox" id="remove-profile-picture" name="remove_profile_picture" value="yes">
+                        <label class="form-check-label unselectable" for="remove-profile-picture">Remove Profile Picture</label>
+                    </div>
+                    <br>
+                </div>
+                
+                <img src="{{ user.profile_picture ? user.profile_picture : '/uploads/profile-pictures/0.jpg' }}" id="view-profile-picture" class="img-fluid mt-1" alt="Profile Picture">
+                <br>
+                <input type="hidden" id="current-username" name="current_username" value="{{ user.username }}">
+
+                <div id="profile-buttons-container" class="d-flex justify-content-center mt-1">
+                    <div class="form-group text-center">
+                        <button type="submit" id="update-profile-button" name="update_profile_button" class="btn btn-primary btn-block">Edit Details</button>
+                    </div>
+                    <span id="non-breaking-space">&nbsp;</span>
+                    <div class="form-group text-center">
+                        <button type="submit" id="delete-profile-button" name="delete_profile_button" class="btn btn-danger btn-block">Delete Profile</button>
+                    </div>
+                </div>
+
+                {{ csrf.ajax | raw }}
+                
+            </form>
+        </article>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+    <script src="/js/user/link-social.js"></script>
+    <script src="/js/user/profile.js"></script>
+{% endblock %}

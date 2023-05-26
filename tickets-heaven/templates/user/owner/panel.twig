@@ -1,0 +1,40 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Owner Panel
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Owner Panel</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+        <button type="button" id="pending-events-button" name="pending_events_button" class="image-button btn btn-secondary bg-info d-flex flex-column panel-button img-fluid me-md-5 mt-md-5">
+            <img src="uploads/default-pictures/events-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Pending Events</strong></span>
+        </button>
+        <button type="button" id="approved-events-button" name="approved_events_button" class="image-button btn btn-secondary bg-success d-flex flex-column panel-button img-fluid mt-4 mt-md-5">
+            <img src="uploads/default-pictures/events-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Approved Events</strong></span>
+        </button>
+    </div>
+    <div class="row mb-4 mb-md-0 justify-content-center">
+        <button type="button" id="rejected-events-button" name="rejected_events_button" class="image-button btn btn-secondary bg-danger d-flex flex-column panel-button img-fluid mt-4 me-md-5">
+            <img src="uploads/default-pictures/events-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Rejected Events</strong></span>
+        </button>
+        <button type="button" id="venues-button" name="venues_button" class="image-button btn btn-secondary d-flex flex-column panel-button img-fluid mt-4">
+            <img src="uploads/default-pictures/venues-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Venues</strong></span>
+        </button>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/user/owner/panel.js"></script>
+{% endblock %}

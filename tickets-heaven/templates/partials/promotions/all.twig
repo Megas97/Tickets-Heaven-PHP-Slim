@@ -1,0 +1,39 @@
+<div class="mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+
+            {% if type == 'admin' %}
+
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+
+            {% elseif type == 'host' %}
+
+                <li class="breadcrumb-item"><a href="{{ url_for('host.panel') }}">Host Panel</a></li>
+
+            {% endif %}
+
+            <li class="breadcrumb-item active" aria-current="page">Promotions</li>
+        </ol>
+    </nav>
+</div>
+<div class="row mb-5 margin-top-minus-10">
+    <div class="col-sm-12 text-center">
+        <button type="button" id="add-promo-code-button" name="add-promo-code-button" class="btn btn-secondary d-inline-flex align-items-center"><i class="fa fa-plus me-2"></i>Add Promo Code</button>
+    </div>
+</div>
+<table id="promoCodesListTable" class="table w-100">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th class="min-desktop dropdown-filter">Event</th>
+        <th>Code</th>
+        <th class="dropdown-filter">Percent</th>
+        <th class="min-desktop">Discounted Ticket Price</th>
+        <th class="min-desktop dropdown-filter">Deadline</th>
+        <th class="min-desktop">Actions</th>
+    </tr>
+    </thead>
+</table>
+
+{{ csrf.ajax | raw }}

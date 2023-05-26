@@ -1,0 +1,88 @@
+<div class="mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+
+            {% if type == 'admin' %}
+
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.promotions') }}">Promotions</a></li>
+
+            {% elseif type == 'host' %}
+
+                <li class="breadcrumb-item"><a href="{{ url_for('host.panel') }}">Host Panel</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('host.promotions') }}">Promotions</a></li>
+
+            {% endif %}
+
+            <li class="breadcrumb-item active" aria-current="page">Add Promo Code</li>
+        </ol>
+    </nav>
+</div>
+<div class="card bg-light border-0 margin-top-minus-10">
+    <article class="card-body medium-card-body text-center mx-auto">
+        <h4 class="card-title text-center margin-top-minus-10">Add Promo Code For Event</h4>
+        <p class="text-center">Promo codes added here will be available for users and guests</p>
+
+        <form id="add-promo-code-form" action="{{ url_for(type ~ '.promotions.add') }}" method="post">
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text unselectable" title="Promo code"><i class="fa fa-font"></i></span>
+                </div>
+
+                <button type="button" id="generate-promo-code" class="btn btn-secondary">Generate</button>
+
+                <input required type="text" id="code" name="code" class="form-control" value="" placeholder="Promo code">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text unselectable" title="Event"><i class="fa fa-calendar"></i></span>
+                </div>
+
+                <select data-live-search="true" id="event" name="event" class="custom-select selectpicker" data-width="calc(100% - 42px)">
+                    <option selected disabled value="Event">Event</option>
+
+                    {% for event in events %}
+
+                        <option value="{{ event.id }}">{{ event.name }} - {{ event.ticket_price }} {{ event.currency.code }}</option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="Promo percent"><i class="fas fa-percent"></i></span>
+                </div>
+
+                <input type="number" id="percent" name="percent" class="form-control" step="0.1" lang="en" value="" placeholder="Promo percent">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text unselectable" title="Deadline"><i class="fa fa-clock"></i></span>
+                </div>
+                
+                <input required type="datetime-local" id="deadline" name="deadline" class="form-control" value="" placeholder="Deadline">
+            </div>
+
+            <div class="form-group text-center mt-1">
+                <button type="submit" id="add-promo-code-button" class="btn btn-primary btn-block">Add Promo Code</button>
+            </div>
+
+            {{ csrf.ajax | raw }}
+            
+        </form>
+    </article>
+</div>

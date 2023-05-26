@@ -1,0 +1,70 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    {{ user.username == auth.user.username ? 'My Orders' : user.getFullName() ~ '\'s Orders' }}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+
+                {% if user.username != auth.user.username %}
+
+                    <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('admin.users') }}">Users</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('admin.users.view', { username: user.username }) }}">View User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">User Orders</li>
+
+                {% else %}
+
+                    <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+
+                {% endif %}
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+
+        {% if user.username == auth.user.username %}
+
+            <p>&nbsp;</p>
+
+        {% else %}
+
+            <p class="text-center">Viewing all orders made by <a href="{{ url_for('admin.users.view', { username: user.username }) }}">{{ user.getFullName() }}</a></p>
+
+        {% endif %}
+
+        <table id="ordersTable" class="table w-100">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Event Image</th>
+                    <th>Event Name</th>
+                    <th class="min-desktop dropdown-filter">Ticket Quantity</th>
+                    <th class="min-desktop">Ticket Single Price</th>
+                    <th class="min-desktop">Ticket Total Price</th>
+                    <th class="min-desktop">Date</th>
+                    <th class="min-desktop dropdown-filter">Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+
+        <input type="hidden" id="current-username" name="current_username" value="{{ user.username }}">
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/user/orders.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+{% endblock %}
