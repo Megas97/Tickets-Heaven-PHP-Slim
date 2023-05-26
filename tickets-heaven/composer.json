@@ -1,0 +1,39 @@
+{
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.5",
+        "php-di/php-di": "^6.4",
+        "slim/twig-view": "^3.3",
+        "slim/http": "^1.2",
+        "illuminate/database": "^8.83",
+        "illuminate/container": "^8.83",
+        "vlucas/phpdotenv": "^5.4",
+        "robmorgan/phinx": "^0.12.12",
+        "symfony/var-dumper": "^5.4",
+        "respect/validation": "^2.2",
+        "slim/csrf": "^1.2",
+        "slim/flash": "^0.4.0",
+        "phpmailer/phpmailer": "^6.6",
+        "ircmaxell/random-lib": "^1.2",
+        "nesbot/carbon": "^2.61",
+        "guzzlehttp/guzzle": "^7.4",
+        "jenssegers/imagehash": "^0.8.0",
+        "endroid/qr-code": "^4.6"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "controllers\\": "src\\controllers",
+            "middleware\\": "src\\middleware",
+            "auth\\": "src\\auth",
+            "social\\": "src\\auth\\social",
+            "mail\\": "src\\mail",
+            "helpers\\": "src\\helpers",
+            "validation\\": "src\\validation",
+            "validation\\exceptions\\": "src\\validation\\exceptions",
+            "validation\\rules\\": "src\\validation\\rules",
+            "models\\": "src\\models",
+            "migrations\\": "src\\migrations"
+        }
+    }
+}
