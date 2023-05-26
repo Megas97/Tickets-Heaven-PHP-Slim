@@ -1,0 +1,415 @@
+CodeCourse Tutorials:
+Learn Slim 4
+Eloquent And Slim
+Controller And Dependency Injection With Slim 3
+Database Migrations
+Authentication With Slim 3
+* PHP Authentication System YouTube: https://www.youtube.com/playlist?list=PLfdtiltiRHWGKUvioJly40RJZchSG2-34
+* PHP Authentication System GitHub: https://github.com/blogscot/slim-authentication
+Easy Social Authentication
+
+How To Use AJAX In PHP And jQuery: https://www.youtube.com/watch?v=KQ9st3LRjwo
+
+XAMPP Change Document Root: https://stackoverflow.com/questions/10157333/xampp-change-document-root
+Slim\Exception\HttpNotFoundException Fix: https://stackoverflow.com/questions/61459690/slim-application-on-xampp-throws-not-found-exception
+Root composer.json requires php-di/php-di ^6.4 Fix: https://discourse.slimframework.com/t/error-installing-php-di-on-slim-4-8/4841
+How To Setup Twig: https://github.com/slimphp/Twig-View
+Entry "..." cannot be resolved: Parameter $container of __construct() has no value defined or guessable Full definition: Object ( class = ... lazy = false __construct( $container = #UNDEFINED# ) ) Fix: https://dev.to/bvrulez/comment/o94g
+Looks like you try to load a template outside configured directories Fix: https://stackoverflow.com/questions/65060231/looks-like-you-try-to-load-a-template-outside-configured-directories-include
+PHP DotEnv Path Issue Fix: https://stackoverflow.com/questions/64287043/path-issue-with-php-dotenv
+Define Project Root Folder To Be Used As Variable: https://stackoverflow.com/questions/36577020/php-failed-to-open-stream-no-such-file-or-directory
+Symfony VarDumper: https://packagist.org/packages/symfony/var-dumper
+Twig Extension (After Twig 3.3 It Is Added Automatically): https://github.com/slimphp/Twig-View/issues/76
+Bootstrap 5.2 Navbar: https://getbootstrap.com/docs/5.2/components/navbar/
+Unknown Function 'path_for' Twig: https://github.com/slimphp/Twig-View/issues/68
+Bootstrap 5.0 Register Form: https://getbootstrap.com/docs/5.0/forms/overview/
+Bootstrap Panels Not Working: https://stackoverflow.com/questions/44997374/bootstrap-panel-is-not-working-properly
+Bootstrap 5.0 Register Form Complete Example: https://bootsnipp.com/snippets/z8699
+Vertically Center FontAwesome Icon: https://stackoverflow.com/questions/20832226/how-to-f-align-font-awesome-icons-vertically-in-a-circle-div
+Bootstrap Backgrounds: https://getbootstrap.com/docs/5.0/utilities/background/
+Bootstrap 5.0 Spacing: https://getbootstrap.com/docs/5.0/utilities/spacing/
+Get Router In Controller In Slim 4: https://discourse.slimframework.com/t/slim-4-get-router-in-controller/3126
+Uncaught ArgumentCountError: Too few arguments to function middleware\ValidationErrorsMiddleware::__invoke() Fix: https://stackoverflow.com/questions/59646514/error-using-slim-framework-v4-middleware
+Bootstrap 5 Removed .has-error Class: https://stackoverflow.com/questions/70589481/did-the-validation-state-classes-has-error-etc-got-removed-from-bootstrap-5
+Bootstrap 5 HTML Field Validation: https://getbootstrap.com/docs/5.0/forms/validation/
+Respect Validation Custom Rules: https://respect-validation.readthedocs.io/en/latest/custom-rules/
+Slim CSRF: https://github.com/slimphp/Slim-Csrf
+Slim CSRF Values Empty Fix: https://discourse.slimframework.com/t/slim-csrf-value-empty-solved/2796/3
+Eloquent OrWhere: https://stackoverflow.com/questions/16995102/laravel-eloquent-query-using-where-with-or-and-or
+Bootstrap 5 Dropdown Menu Out Of Screen Fix: https://stackoverflow.com/questions/66214822/bootstrap-5-dropdown-menu-go-out-off-to-the-right-of-the-screen
+Slim Flash Messages: https://github.com/slimphp/Slim-Flash
+Respect Validation Input Length: https://respect-validation.readthedocs.io/en/latest/rules/Length/#length
+Respect Validation Custom Messages: https://stackoverflow.com/questions/51604612/translating-or-writing-custom-messages-on-respect-validation
+CSS @media Not Working Fix: https://stackoverflow.com/questions/7859336/why-are-my-css3-media-queries-not-working-on-mobile-devices
+PHPMailer: https://github.com/PHPMailer/PHPMailer
+Twig Undefined Function appendData Fix: Use '$this->view->fetch($view, $viewData)' inside of '$message->body(...)' instead!
+PHPMailer Not Sending Emails Fix: Use port '465' instead of '2525' and put '$mailer->isSMTP();' right before '$mailer->Host = ...' in the configuration!
+Fix Cyrillic Characters Not Displaying Properly In PHPMailer: https://stackoverflow.com/questions/29093727/phpmailer-cyrillic-charset-trouble
+RandomLib: https://github.com/ircmaxell/RandomLib
+Eloquent Query Grouping: https://stackoverflow.com/questions/16995102/laravel-eloquent-query-using-where-with-or-and-or
+HTML Tags In Twig Variables: https://stackoverflow.com/questions/40768702/twig-variables-with-html-tags
+.env Variable With Whitespace In It: https://stackoverflow.com/questions/29422799/setting-variables-with-spaces-within-env
+Twig Display Current Year: https://octobertricks.com/tricks/display-current-year-in-twig
+Copyright Symbol: https://www.legalline.ca/legal-answers/using-copyright-symbol
+Use Bootstrap Formatting In PHPMailer (Not Possible): https://stackoverflow.com/questions/38815343/how-to-send-html-mail-in-php-with-bootstrap-formatting
+Make HTML Link Look Like A Button: https://stackoverflow.com/questions/710089/how-do-i-make-an-html-link-look-like-a-button
+CSS Create Rounded Buttons: https://www.w3schools.com/HOWTO/howto_css_round_buttons.asp
+Add Remember Me Checkbox To Bootstrap Form: https://getbootstrap.com/docs/5.0/forms/checks-radios/
+Carbon: https://github.com/briannesbitt/Carbon
+Slim 4 setCookie Method Missing: https://discourse.slimframework.com/t/how-can-i-set-get-cookies/3155
+PHP setcookie Method: https://www.php.net/manual/en/function.setcookie.php
+Slim Add Multiple Middleware: https://stackoverflow.com/questions/38007563/slim-3-how-to-add-multiple-middleware-classes-on-a-route
+PHP Get Cookie Value: https://stackoverflow.com/questions/30570523/how-to-get-cookie-value
+Redirect To Another Route (If withRedirect Is Not Working): https://discourse.slimframework.com/t/redirect-to-another-route/3582
+Delete Cookies In PHP: https://www.delftstack.com/howto/php/delete-cookie-php/
+Align Element To The Right Inside Of A <div>: https://stackoverflow.com/questions/43146263/bootstrap-4-align-elements-right-inside-a-col-div
+Slim 4 Pass Parameters To 'urlFor' Function The Same Way As For The 'render()' One: https://stackoverflow.com/questions/59680412/slim-4-get-all-routes-into-a-controller-without-app
+Overlay <div> Over Another <div>: https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-div
+Stack <div> Elements On Top Of Each Other: https://stackoverflow.com/questions/1909648/stacking-divs-on-top-of-each-other
+Bootstrap 5.0 Toasts: https://getbootstrap.com/docs/5.0/components/toasts/
+Bootstrap 5.0 Toasts Example: https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-toasts.php
+Adjust Bootstrap Toast Width: https://stackoverflow.com/questions/28057622/how-to-adjust-toaster-popup-width
+PHPMailer Set 'from' Email Field: https://stackoverflow.com/questions/13918999/how-to-change-envelope-sender-address-using-phpmailer
+Slim Redirect User To Requested Page After Login: https://discourse.slimframework.com/t/how-redirect-user-to-previous-page-after-login/4983
+PHP Replace Substring Of String: https://www.w3schools.com/php/func_string_str_replace.asp
+Slim 4 Routing: https://www.slimframework.com/docs/v4/objects/routing.html
+Slim urlFor Function: https://www.slimframework.com/docs/v2/routing/helpers.html
+Respect Validation Optional Docs: https://respect-validation.readthedocs.io/en/latest/rules/Optional/
+PHP Elvis Operator: https://stackoverflow.com/questions/1993409/operator-the-elvis-operator-in-php
+Eloquent Get Changed Attributes: https://stackoverflow.com/questions/28866500/laravel-eloquent-update-just-if-changes-have-been-made
+Bootstrap Vertical Align Elements: https://www.geeksforgeeks.org/how-to-set-vertical-alignment-in-bootstrap/
+CSS @media Multiple Conditions: https://www.peachpit.com/articles/article.aspx?p=1604236&seqNum=2#:~:text=You%20can%20use%20and%20to,1200px)%20%7B%20...%20%7D
+Bootstrap Breakpoints: https://getbootstrap.com/docs/5.0/layout/breakpoints/
+Twig OR Operator: https://stackoverflow.com/questions/62317401/i-want-to-put-or-operator-in-twig-if-statement-but-or-operator-not-working-in-tw
+Guzzle HTTP Client: https://github.com/guzzle/guzzle
+Create GitHub OAuth App: https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app
+GitHub Token Sending Fix ('headers' => ['authorization' => 'token ' . $token,]): https://developer.github.com/changes/2020-02-10-deprecating-auth-through-query-param/
+Check If Property Exists In stdClass Object: https://stackoverflow.com/questions/20385664/php-stdclass-check-for-property-exist
+Use Environment Variables In .env File To Fill Other Variables In Same File: https://stackoverflow.com/questions/51213413/how-to-use-environment-variables-in-a-env-file-to-fill-out-other-environment-va
+PHP Split String By Another String: https://www.php.net/manual/en/function.explode.php
+PHP Count Elements In Array: https://www.w3schools.com/php/func_array_count.asp
+PHP Generate Random Number: https://www.php.net/manual/en/function.mt-rand.php
+PHP String To Lower Characters: https://www.php.net/manual/en/function.strtolower.php
+PHP Search String For Substring: https://www.php.net/manual/en/function.str-contains.php
+Align Two Forms Side By Side: https://stackoverflow.com/questions/29541847/how-can-i-align-two-forms-side-by-side
+Bootstrap Center Elements: https://stackoverflow.com/questions/42388989/bootstrap-center-vertical-and-horizontal-alignment
+Create Facebook Developer Account: https://developers.facebook.com/docs/development/register
+Problem Inputting OAuth URL When It Is 'localhost': https://community.auth0.com/t/problems-with-facebook-login-when-testing-connection/64718
+Dynamically Write A PHP Object Property Name: https://stackoverflow.com/questions/12571197/how-do-i-dynamically-write-a-php-object-property-name
+Remove Hash From URL With JavaScript Without Page Refresh: https://stackoverflow.com/questions/1397329/how-to-remove-the-hash-from-window-location-url-with-javascript-without-page-r/5298684#5298684
+Display Profile Image In Navbar: https://stackoverflow.com/questions/56942757/display-profile-image-in-nav-bar
+Slim 4 Uploading Files Using POST Forms: https://www.slimframework.com/docs/v4/cookbook/uploading-files.html
+Bootstrap 5 Form File Upload Input: https://getbootstrap.com/docs/5.0/forms/form-control/#file-input
+Allow File Input To Accept Only Image Files: https://www.w3docs.com/snippets/html/how-to-allow-the-file-input-type-to-accept-only-image-files.html
+Bootstrap 5 Images: https://getbootstrap.com/docs/5.0/content/images/
+Undefined Index While Uploading File: https://stackoverflow.com/questions/19027992/undefined-index-while-uploading-file
+PHPConvert Image To PNG Format: https://onlinecode.org/php-convert-jpg-gif-image-png/
+'Cannot access protected property Slim\Psr7\UploadedFile::$file' Fix: https://discourse.slimframework.com/t/slim-4-uploadedfile-protected-file/4021
+Slim 4 Get Full Path To Client Uploaded File (Slim\Http\UploadedFile): https://github.com/slimphp/Slim/issues/1798
+Save A PNG Image To A Variable: https://stackoverflow.com/questions/23987216/saving-a-png-to-a-variable
+Align (text-center On Some Parent) Checkboxes Horizontally With CSS: https://stackoverflow.com/questions/38260895/how-to-align-checkboxes-horizontally-with-css
+PHP Delete A File: https://www.php.net/manual/en/function.unlink.php
+Allow Only One Domain To Access Subfolder(s) In 'public' Folder Via '.htaccess' File: https://stackoverflow.com/questions/20018237/how-to-only-allow-one-domain-to-access
+jQuery Remove Element: https://www.w3schools.com/jquery/html_remove.asp
+Fix 'Jumping Scrollbar' Issue Using Only CSS: https://aykevl.nl/2014/09/fix-jumping-scrollbar
+Make Text Unselectable With CSS: https://jsfiddle.net/Marcel/jH36t/
+JPG Vs PNG For Web: https://undsgn.com/jpg-vs-png/
+PHP 'imagejpeg': https://www.php.net/manual/en/function.imagejpeg.php
+PHP 'getimagesize': https://www.php.net/manual/en/function.getimagesize.php
+Resize Image In PHP: https://stackoverflow.com/questions/14649645/resize-image-in-php
+PHP Get Type Of Variable: https://www.php.net/manual/en/function.gettype.php
+Compare Two Images For Similarity Or Perfect Match In Laravel 8: https://stackoverflow.com/questions/69424784/compare-two-image-for-similarity-or-perfect-match-in-laravel-8
+ImageHash GitHub: https://github.com/jenssegers/imagehash
+Facebook Graph API: Get Larger Profile Pictures: https://stackoverflow.com/questions/10650730/facebook-graph-api-get-larger-pictures-in-one-request
+JavaScript (jQuery) Checkbox OnClick Event: https://stackoverflow.com/questions/6358673/javascript-checkbox-onchange
+Reset Input Of Type File With JavaScript (jQuery): https://stackoverflow.com/questions/20549241/how-to-reset-input-type-file
+JavaScript (jQuery) Input Type File OnChange Event: https://stackoverflow.com/questions/20244327/on-change-event-for-file-input-element
+Check/Uncheck Checkbox With JavaScript (jQuery): https://stackoverflow.com/questions/8206565/check-uncheck-checkbox-with-javascript
+PHP 'file_get_contents': https://www.php.net/manual/en/function.file-get-contents.php
+HTML 'disabled' Attribute: https://www.w3schools.com/tags/att_option_disabled.asp
+Twig 'not' Statement: https://stackoverflow.com/questions/38138727/how-to-properly-use-if-not-statement-with-twig
+Set Text Of <div> Element Via jQuery: https://api.jquery.com/text/
+Fix '"Failed CSRF check!"' When Trying To Submit Form After It Has Been Submitted Via AJAX On Same Page: https://stackoverflow.com/questions/45970981/php-slim-framework-generates-csrf-token-on-each-connection
+Get Base URL With JavaScript: https://stackoverflow.com/questions/25203124/how-to-get-base-url-with-jquery-or-javascript
+jQuery '.each()' Method: https://api.jquery.com/each/
+Make The First Letter Of A String Uppercase In JavaScript: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+JavaScript String Replace: https://www.w3schools.com/jsref/jsref_replace.asp
+Change Placeholder Text Using jQuery: https://stackoverflow.com/questions/9232810/change-placeholder-text-using-jquery
+Get All 'input' Elements From Specific Form With jQuery: https://stackoverflow.com/questions/4291005/jquery-get-all-input-from-specific-form
+jQuery Select By Attribute Using AND And OR Operators: https://stackoverflow.com/questions/10687131/jquery-select-by-attribute-using-and-and-or-operators
+Check Required Fields With preventDefault With jQuery: https://stackoverflow.com/questions/48897314/check-required-fields-with-preventdefault
+Get Query String Parameters In JavaScript: https://stackoverflow.com/questions/7731778/get-query-string-parameters-url-values-with-jquery-javascript-querystring
+JavaScript JSON Decode: https://www.w3schools.com/js/js_json_parse.asp
+Delete Query Parameters With URLSearchParams Via JavaScript: https://stackoverflow.com/questions/1634748/how-can-i-delete-a-query-string-parameter-in-javascript
+JavaScript String To Lower Characters: https://www.w3schools.com/jsref/jsref_tolowercase.asp
+'Illegal string offset 'whatever' in...' Fix: https://stackoverflow.com/questions/9869150/illegal-string-offset-warning-php
+Naming Conventions In HTML: https://courses.cs.washington.edu/courses/cse154/17au/styleguide/html-css/naming-conventions-html.html
+JavaScript 'replaceState()' Vs. 'pushState()' (UPDATE ALL OCCURRENCES!): https://stackoverflow.com/questions/17507091/replacestate-vs-pushstate
+Pass Query String Parameter To AJAX Call From Data: https://stackoverflow.com/questions/56128021/how-to-pass-query-string-parameter-to-ajax-call-from-data
+Convert Any Data To JSON In JavaScript: https://www.w3schools.com/js/js_json_stringify.asp
+jQuery '.html()' Method Not Setting HTML Tags Correctly Fix (Use '.prop('innerHTML', myHtml)'): https://stackoverflow.com/questions/33469447/jquery-html-not-setting-content-correctly
+How To Upload A File Using PHP & AJAX: https://anto.online/code/upload-a-file-using-php-ajax/
+HTML <input> Type Hidden: https://www.w3schools.com/tags/att_input_type_hidden.asp
+Check Whether A Checkbox Is Checked In jQuery: https://stackoverflow.com/questions/901712/how-do-i-check-whether-a-checkbox-is-checked-in-jquery
+Check If Array Contains Specific Value In PHP: https://www.w3schools.com/php/func_array_in_array.asp
+Check If Array Contains Specific Key In PHP: https://www.w3schools.com/php/func_array_key_exists.asp
+Set 'src' Attribute With jQuery: https://stackoverflow.com/questions/4390627/whats-the-correct-way-to-set-src-attribute-in-jquery
+Add An Item To An Associative Array In PHP: https://stackoverflow.com/questions/5384847/adding-an-item-to-an-associative-array
+Reload An Image With jQuery: https://stackoverflow.com/questions/2104949/how-to-reload-refresh-an-elementimage-in-jquery
+Toggle The 'disabled' Attribute With jQuery: https://learn.jquery.com/using-jquery-core/faq/how-do-i-disable-enable-a-form-element/
+SweetAlert2 JavaScript Library: https://sweetalert2.github.io
+How To Tell Which Button Was Clicked In A PHP Form Submit: https://stackoverflow.com/questions/2680160/how-can-i-tell-which-button-was-clicked-in-a-php-form-submit
+Change The Selected Value Of A Dropdown List ('<select>') With jQuery: https://stackoverflow.com/questions/499405/change-the-selected-value-of-a-drop-down-list-with-jquery
+Value Of Dropdown List ('<select>') In PHP When '<option>' Is Disabled: https://stackoverflow.com/questions/43632768/val-of-select-null-if-values-is-disabled
+Get 'name' Attribute Of jQuery Object: https://stackoverflow.com/questions/8852665/how-can-i-get-name-of-element-with-jquery
+Create A 'key => value' Array In JavaScript: https://stackoverflow.com/questions/1144705/best-way-to-store-a-key-value-array-in-javascript
+Create Object With Dynamic Keys: https://stackoverflow.com/questions/19837916/creating-object-with-dynamic-keys
+How To Calculate The Width Of An Element With The CSS 'calc()' Function: https://www.w3docs.com/snippets/css/how-to-calculate-the-width-of-an-element-with-the-css-calc-function.html
+Set Dropdown Options To Value From Backend In Twig: https://stackoverflow.com/questions/42630410/twig-setting-select-option-on-a-dropdown
+Bootstrap 4 Table With Actions Buttons: https://codepen.io/cristinaconacel/pen/dgxqxj
+JQuery 'Uncaught TypeError: Illegal invocation' At AJAX Request Fix: https://stackoverflow.com/questions/11071100/jquery-uncaught-typeerror-illegal-invocation-at-ajax-request-several-eleme
+DataTables CDN: https://cdn.datatables.net
+DataTables Responsive Table Example: https://datatables.net/extensions/rowreorder/examples/initialisation/responsive.html
+DataTables Responsive CDN: https://cdn.datatables.net/responsive/#Releases
+Return Value Of Delete Method Of Eloquent: https://laracasts.com/discuss/channels/eloquent/return-value-of-delete-method
+Reload/Refresh DataTable After Event: https://datatables.net/forums/discussion/38969/reload-refresh-table-after-event
+DataTables Events: https://datatables.net/manual/events
+Show Image In DataTable: https://datatables.net/forums/discussion/32924/is-it-possible-to-show-image-in-datatable
+Create HTML Button That Acts As A Link: https://stackoverflow.com/questions/2906582/how-do-i-create-an-html-button-that-acts-like-a-link
+Pass Parameters To 'url_for' Twig Function: https://github.com/slimphp/Twig-View/issues/101
+How To Use 'belongsTo' Relationship In Laravel: https://readerstacks.com/how-to-use-belongsto-relationship-in-laravel-with-example/
+DataTables Events List: https://datatables.net/reference/event/
+Trigger The Same Function From Multiple Events With jQuery: https://stackoverflow.com/questions/2534089/how-can-i-trigger-the-same-function-from-multiple-events-with-jquery
+Phinx Seeding: https://book.cakephp.org/phinx/0/en/seeding.html
+Check If Eloquent Record Exists: https://stackoverflow.com/questions/57903764/laravel-5-8-eloquent-check-if-record-exists
+Replace All Occurrences Of A String In JavaScript: https://stackoverflow.com/questions/1144783/how-do-i-replace-all-occurrences-of-a-string-in-javascript
+Check If JavaScript Object Contains A Specific Key: https://stackoverflow.com/questions/7972446/is-there-a-not-in-operator-in-javascript-for-checking-object-properties
+Twig 'dump()' Function: https://twig.symfony.com/doc/2.x/functions/dump.html
+Twig 'for' Loop: https://twig.symfony.com/doc/3.x/tags/for.html
+Add Telephone Links To HTML: https://www.elegantthemes.com/blog/wordpress/call-link-html-phone-number
+Embed Google Maps Into HTML (No API Key Needed!): https://www.embedgooglemap.net
+Twig 'url_encode' Filter: https://twig.symfony.com/doc/3.x/filters/url_encode.html
+Center Cards In bootstrap: https://stackoverflow.com/questions/39031224/how-to-center-cards-in-bootstrap-4
+Bootstrap 5 Flex ('justify-content-center'): https://getbootstrap.com/docs/5.0/utilities/flex/
+Laravel Eloquent 'hasMany' And 'belongsTo' Parameters: https://stackoverflow.com/questions/46841159/laravel-hasmany-and-belongsto-parameters
+Show Bootstrap 5 Toast After Scroll Down: https://stackoverflow.com/questions/66410812/show-toast-at-bottom-right-after-scroll-down-bootstrap-5
+Center Element That Has A Fixed Position: https://stackoverflow.com/questions/2005954/center-a-positionfixed-element
+Datetime Picker HTML: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local
+Use String From Variable When Defining Another Variable: https://stackoverflow.com/questions/4656623/php-string-name-as-variable
+PHP Carbon: https://carbon.nesbot.com/docs/
+Formatting A Carbon Date Instance: https://stackoverflow.com/questions/33405939/formatting-a-carbon-date-instance
+DateTime Format Options: https://www.php.net/manual/en/datetime.format.php
+Comparing Two Dates In PHP: https://www.geeksforgeeks.org/comparing-two-dates-in-php/
+Put Two <div> Elements Next To Each Other Using Bootstrap: https://stackoverflow.com/questions/45287628/bootstrap-grid-div-next-to-each-other
+Bootstrap Comments Section Example: https://bbbootstrap.com/snippets/bootstrap-comment-section-reply-input-and-vote-up-and-down-73363704
+Bootstrap Align Item At Bottom Of Card: https://stackoverflow.com/questions/48406628/bootstrap-align-button-to-the-bottom-of-card
+Add Scrollbar To Div: https://www.educative.io/answers/how-to-add-scrollbar-to-div
+Set Spacing Per Breakpoint In Bootstrap 5: https://stackoverflow.com/questions/70301395/setting-spacing-per-breakpoint-in-bootstrap-5
+Laravel Soft Deletes: https://stackoverflow.com/questions/22426165/laravel-soft-delete-posts
+Bootstrap Carousel: https://getbootstrap.com/docs/5.2/components/carousel/
+Eloquent Return Collection From 'hasMany' Relationship: https://stackoverflow.com/questions/67937166/laravel-eloquent-relations-method-is-returning-hasmany-object-and-property-is
+Access Current Index In Twig 'for' Loop: https://twig.symfony.com/doc/3.x/tags/for.html
+Show Carousel Caption On Image Hover: https://stackoverflow.com/questions/53694715/show-carousel-caption-on-image-hover
+How To Darken An Image Using CSS: https://www.geeksforgeeks.org/how-to-darken-an-image-using-css/
+jQuery Multiple Classes Selector: https://www.w3schools.com/jquery/sel_multiple_classes.asp
+Eloquent Where Not Equal To: https://stackoverflow.com/questions/28256933/eloquent-where-not-equal-to
+Hide Arrows From <input> Type Number: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+Add Two Strings As If They Were Numbers: https://stackoverflow.com/questions/8976627/how-to-add-two-strings-as-if-they-were-numbers
+Center Text In HTML Number Input: https://stackoverflow.com/questions/23715881/center-text-in-html-number-input
+Disable Writing In Input Type Number In HTML5: https://stackoverflow.com/questions/17164278/disable-writing-in-input-type-number-html5
+Prevent Select On Input Text Field: https://stackoverflow.com/questions/29221991/prevent-select-on-input-text-field
+Remove Focus Around Buttons On Click: https://stackoverflow.com/questions/19053181/how-to-remove-focus-around-buttons-on-click
+HTML <textarea> Element: https://www.w3schools.com/tags/tag_textarea.asp
+Disable The Resizable Property Of A <textarea> Element: https://stackoverflow.com/questions/5235142/how-do-i-disable-the-resizable-property-of-a-textarea
+How To Hide Specific Columns Of A DataTable On Mobile Devices: https://stackoverflow.com/questions/59101081/how-to-hide-specific-columns-of-a-datatable-on-mobile-devices
+Responsive DataTables Class Control: https://datatables.net/extensions/responsive/examples/display-control/classes.html
+Change 'created_at' Value In Collection To Be Carbon Human Readable: https://stackoverflow.com/questions/51849021/change-created-at-value-in-collection-to-be-carbon-human-readable
+How To Scroll To Bottom Of '<div>': https://stackoverflow.com/questions/270612/scroll-to-bottom-of-div
+jQuery 'scrollTop()' Method: https://api.jquery.com/scrolltop/
+How Do I Determine 'scrollHeight' With jQuery: https://stackoverflow.com/questions/7381817/how-do-i-determine-scrollheight
+Enter Key To Submit AJAX Form: https://stackoverflow.com/questions/21743850/enter-key-to-submit-ajax-form
+Check If Element Exists In jQuery: https://stackoverflow.com/questions/4592493/check-if-element-exists-in-jquery
+Iterate Over Columns In Laravel: https://stackoverflow.com/questions/60960718/iterate-over-columns-blade-laravel
+Make First Letter Of String Upper Case In PHP: https://www.w3schools.com/php/func_string_ucfirst.asp
+PHP Check If Password Matches Hash: https://www.php.net/manual/en/function.password-verify.php
+jQuery 'find()' Method: https://api.jquery.com/find/
+jQuery 'prev()' Method: https://www.w3schools.com/jquery/traversing_prev.asp
+JavaScript Make String Lowercase: https://www.w3schools.com/jsref/jsref_tolowercase.asp
+Get Second Child Using jQuery: https://stackoverflow.com/questions/4727263/get-second-child-using-jquery
+Twig Make String Lowercase: https://twig.symfony.com/doc/3.x/filters/lower.html
+Laravel Check If Property Exists: https://stackoverflow.com/questions/46301623/laravel-check-property-exist
+Bootstrap-Select Plugin With Bootstrap 5: https://stackoverflow.com/questions/67643806/how-to-import-bootstrap-select-in-bootstrap-version-5
+Set Width Of Bootstrap-Select: https://stackoverflow.com/questions/46314504/bootstrap-select-width-in-form
+Bootstrap-Select Plugin Methods: https://developer.snapappointments.com/bootstrap-select/methods/
+Bootstrap-Select Plugin Examples: https://developer.snapappointments.com/bootstrap-select/examples/
+Laravel Get Only IDs Of Eloquent Collection: https://stackoverflow.com/questions/34405138/laravel-5-2-pluck-method-returns-array
+Check If Value Exists In Array In Twig: https://stackoverflow.com/questions/34870091/check-a-value-exists-in-array-from-twig
+PHP Get Array Entries Which Are Not In Another Array: https://www.php.net/manual/en/function.array-diff.php
+Prevent Line Breaks And Add Ellipsis To The End Of Text Via CSS: https://stackoverflow.com/questions/1383143/how-to-prevent-line-breaks-in-list-items-using-css
+Add Ellipsis To Twig Variable: https://stackoverflow.com/questions/13143001/symfony-2-twig-limit-the-length-of-the-text-and-put-three-dots
+Bootstrap 4 Align Navbar Section To The Right: https://stackoverflow.com/questions/36260398/navbar-right-is-not-working-on-list
+Bootstrap 5 Changes For Aligning Navbar To The Right: https://stackoverflow.com/questions/63948287/bootstrap-5-navbar-align-items-right
+Remove Borders On Bootstrap 4 Card: https://stackoverflow.com/questions/50743134/how-do-i-disable-the-border-on-bootstrap-4-cards
+Differences Between 'string' And 'text' MySQL Data Types: https://stackoverflow.com/questions/3354330/difference-between-string-and-text-in-rails
+jQuery Multiple Element Types Selector: https://stackoverflow.com/questions/8935935/inputtext-textarea-selector-in-jquery
+Check For Null Value In Twig: https://twig.symfony.com/doc/2.x/tests/null.html
+Bootstrap Input Group (How To Add Element Before & After <input> Element): https://getbootstrap.com/docs/4.0/components/input-group/
+Copy Text To Clipboard Via jQuery: https://stackoverflow.com/questions/67804175/how-can-i-copy-in-clipboard-with-jquery
+How To Add Tooltips For Mobile Browsers: https://stackoverflow.com/questions/12539006/tooltips-for-mobile-browsers
+Check Overlapping Among Multiple Datetime Ranges In PHP: https://stackoverflow.com/questions/22395386/how-to-check-overlapping-among-multiple-date-ranges-in-php
+How To Use 'pluck()' For Multiple Columns (Use 'select()' Instead): https://stackoverflow.com/questions/42947515/pluck-with-multiple-columns
+How To Unset Multiple Variables In PHP: https://stackoverflow.com/questions/12633877/how-to-unset-multiple-variables
+Change HTML Element's CSS Width Via jQuery: https://www.w3schools.com/jquery/jquery_css.asp
+Check If Element Has A Specific ID Via jQuery: https://stackoverflow.com/questions/17277821/jquery-if-element-has-an-id
+Bootstrap-Select Plugin Generating Empty Option On Single Select Dropdown When Destroyed Programmatically Bug: https://github.com/snapappointments/bootstrap-select/issues/2491
+Put Elements On New Line On Small Screens Via Bootstrap: https://stackoverflow.com/questions/49729007/centering-flex-items-on-wrap-with-bootstrap
+Bootstrap 5 Modal: https://getbootstrap.com/docs/5.0/components/modal/
+Bootstrap 5 Modal Example: https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-modals.php
+Make Bootstrap Modal Wider: https://stackoverflow.com/questions/25859255/trying-to-make-bootstrap-modal-wider
+Twig 'include': https://twig.symfony.com/doc/2.x/tags/include.html
+Catch When Bootstrap Modal Opens: https://stackoverflow.com/questions/17461682/calling-a-function-on-bootstrap-modal-open
+AJAX Loads Multiple Times When Bootstrap Modal Has Been Closed And Reopened: https://stackoverflow.com/questions/51402252/jquery-ajax-loaded-multiple-times-after-closing-the-modal
+URL Encode String Via JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+JavaScript 'foreach' Loop On An Associative Array: https://stackoverflow.com/questions/18804592/javascript-foreach-loop-on-an-associative-array-object
+Enable Closing Bootstrap Modal With Escape Key: https://stackoverflow.com/questions/12630156/how-do-you-enable-the-escape-key-close-functionality-in-a-twitter-bootstrap-moda
+Catch When Bootstrap Modal Closes: https://stackoverflow.com/questions/54282019/how-to-detect-the-way-bootstrap-modal-is-closed
+Convert A DOM Element To A jQuery Element: https://stackoverflow.com/questions/625936/how-can-i-convert-a-dom-element-to-a-jquery-element
+Prevent Bootstrap Modal From Closing On Clicking Save Button And Close Modal Via jQuery Instead: https://stackoverflow.com/questions/19073238/how-to-prevent-bootstrap-modal-from-closing-from-button-using-onclick
+Position Element Above Bootstrap Modal: https://stackoverflow.com/questions/19917026/bootstrap-modal-z-index
+Remove Options From '<select>' Element Via jQuery: https://stackoverflow.com/questions/1518216/jquery-remove-options-from-select
+Adding Options To A '<select>' Using jQuery: https://stackoverflow.com/questions/740195/adding-options-to-a-select-using-jquery
+Pluck Key Value From Object Of Array In JavaScript: https://stackoverflow.com/questions/49009561/how-to-pluck-key-value-from-object-of-array
+Find Elements In Array That Are Not In Another Array With JavaScript: https://stackoverflow.com/questions/2963281/javascript-algorithm-to-find-elements-in-array-that-are-not-in-another-array
+Find an Element Based On A 'data-attribute' Value Via JavaScript: https://stackoverflow.com/questions/4191386/jquery-how-to-find-an-element-based-on-a-data-attribute-value
+Select All / Unselect All In Bootstrap-Select Plugin: https://stackoverflow.com/questions/28111340/select-all-unselect-all-in-bootstrap-select-plugin
+Set Bootstrap Column Next To Another With No Space: https://stackoverflow.com/questions/62754303/how-to-set-one-column-next-to-each-other-without-space
+Bootstrap Put Element At End Of Row: https://stackoverflow.com/questions/48865109/bootstrap-make-an-element-at-the-end-of-the-row
+Check If Bootstrap Modal Is Already Open: https://stackoverflow.com/questions/46998081/how-to-check-if-bootstrap-4-modal-already-open
+Find An Element By Partial ID In jQuery: https://stackoverflow.com/questions/18749188/find-an-element-by-partial-id-in-jquery
+Scroll Automatically To The Bottom Of The Page: https://stackoverflow.com/questions/11715646/scroll-automatically-to-the-bottom-of-the-page
+Tell If A DOM Element Is Visible In The Current Viewport: https://stackoverflow.com/questions/123999/how-can-i-tell-if-a-dom-element-is-visible-in-the-current-viewport
+Scroll Bootstrap Modal Window To The Bottom: https://stackoverflow.com/questions/42994729/scrolling-of-modal-window-bootstrap-to-bottom
+Delete Whole Laravel Collection: https://stackoverflow.com/questions/38120305/laravel-delete-whole-collection
+How To Align Content At Bottom In Bootstrap Column: https://stackoverflow.com/questions/43933157/how-to-align-content-bottom-on-bootstrap-4-col
+CSS Force Image Resize And Keep Aspect Ratio: https://stackoverflow.com/questions/12991351/css-force-image-resize-and-keep-aspect-ratio
+jQuery AJAX 'Uncaught TypeError: Illegal invocation' Error Fix: https://stackoverflow.com/questions/12755945/jquery-and-html-formdata-returns-uncaught-typeerror-illegal-invocation
+Laravel Eloquent Query Using 'where' And 'orWhere': https://stackoverflow.com/questions/16995102/laravel-eloquent-query-using-where-with-or-and-or
+Multiple Conditions On Laravel Collection: https://stackoverflow.com/questions/52167499/laravel-collection-multiple-where-conditions
+Remove The Last Character From A String In JavaScript: https://masteringjs.io/tutorials/fundamentals/remove-last-character
+Get The Key In Callback Function Of PHP 'array_filter': https://stackoverflow.com/questions/7699931/php-array-filter-how-to-get-the-key-in-callback
+HTML Table Tag: https://www.w3schools.com/tags/tag_table.asp
+HTML Table Cellspacing Attribute: https://www.geeksforgeeks.org/html-table-cellpadding-attribute/
+Tips For Margins And HTML Email Padding: https://www.emailonacid.com/blog/article/email-development/7_tips_and_tricks_regarding_margins_and_padding_in_html_emails/
+Laravel Eloquent Relationships: https://laravel.com/docs/9.x/eloquent-relationships
+Remove 'undefined' Values From Array Using jQuery: https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
+Set Selected Value On Select Using Bootstrap-Select Plugin: https://stackoverflow.com/questions/14804253/how-to-set-selected-value-on-select-using-selectpicker-plugin-from-bootstrap
+Get Type Of HTML Element From jQuery Object: https://stackoverflow.com/questions/14587289/get-the-type-of-the-html-element-from-a-jquery-object
+Check If Value Exists In Array In jQuery: https://stackoverflow.com/questions/18867599/jquery-inarray-how-to-use-it-right
+Loop Through Associative Array In Twig: https://stackoverflow.com/questions/31838348/how-would-i-loop-through-this-associative-array-in-twig
+Bootstrap Thumbs Up Icon: https://fontawesome.com/v4/icon/thumbs-up
+Get Dynamic Object Field In Twig: https://stackoverflow.com/questions/26024223/twig-form-widget-dynamically-choose-form-field
+'Call to a member function map() on array' Fix: https://stackoverflow.com/questions/51107262/laravel-call-to-a-member-function-map-on-array
+Get All Options Of A '<select>' Element Using jQuery: https://stackoverflow.com/questions/590163/how-to-get-all-options-of-a-select-using-jquery
+Disable Previous Dates Using HTML5 'datetime-local' Input: https://stackoverflow.com/questions/69969151/how-to-disable-previous-date-using-html5-datetime-local-input
+JS 'toISOString()' Ignores Timezone Offset Fix: https://stackoverflow.com/questions/10830357/javascript-toisostring-ignores-timezone-offset
+Twig Date Documentation: https://twig.symfony.com/doc/3.x/filters/date.html
+Compare DateTime Objects In Twig: https://stackoverflow.com/questions/11774520/compare-date-with-a-specific-one-and-datetime-to-string-in-twig
+Twig 'Object of class DateTime could not be converted to string' Fix: https://stackoverflow.com/questions/54090255/object-of-class-datetime-could-not-be-converted-to-string-symfony-php
+How To Get Current DateTime With jQuery: https://stackoverflow.com/questions/20456712/how-to-get-current-time-with-jquery
+Compare Two Dates With JavaScript: https://stackoverflow.com/questions/492994/compare-two-dates-with-javascript
+Parsing A String To A Date In JavaScript: https://stackoverflow.com/questions/5619202/parsing-a-string-to-a-date-in-javascript
+How To Add Text On Image Using Bootstrap: https://stackoverflow.com/questions/62293401/how-to-add-text-on-image-using-bootstrap
+Submit A 'disabled' Input In A Form: https://stackoverflow.com/questions/25264487/submit-a-disabled-input-in-a-form-could-not-get-value
+How To Get Trashed With Eloquent Model: https://stackoverflow.com/questions/41542648/how-to-get-trashed-with-eloquent-model-using-where-and-with
+Accessing PHP Session From Twig Template: https://stackoverflow.com/questions/8399389/accessing-session-from-twig-template
+How To Center Align A Button In Bootstrap: https://stackoverflow.com/questions/41664991/bootstrap-4-how-do-i-center-align-a-button
+Dynamically Generating A QR Code With PHP: https://github.com/endroid/qr-code
+Place Two 'div' Elements Next To Each Other Via CSS: https://stackoverflow.com/questions/5803023/how-to-place-two-divs-next-to-each-other
+Convert An Image To Base64 Encoding With PHP: https://stackoverflow.com/questions/3967515/how-to-convert-an-image-to-base64-encoding
+Remove The First Character Of String In PHP (Has To Be Known): https://www.geeksforgeeks.org/how-to-remove-the-first-character-of-string-in-php/
+Resize An Image For Smaller Screens: https://stackoverflow.com/questions/62251040/how-to-resize-an-image-for-smaller-screens
+PHP 'json_encode()' Escaping Forward Slashes Fix: https://stackoverflow.com/questions/10210338/json-encode-escaping-forward-slashes
+Phinx Data Types: https://github.com/cakephp/phinx/blob/001c9c9fa216ab951510d1008a52accb48ec59f9/src/Phinx/Db/Adapter/MysqlAdapter.php#L683-L685
+Twig Format Price: https://twig.symfony.com/doc/2.x/filters/number_format.html
+FontAwesome Dollar Sign Money Icon: https://fontawesome.com/v5/icons/dollar-sign?s=solid&f=classic
+PHP Format Price: https://www.php.net/manual/en/function.number-format.php
+Force Decimal Point Instead Of Comma In HTML5 Number Input (Client-Side): https://stackoverflow.com/questions/6178332/force-decimal-point-instead-of-comma-in-html5-number-input-client-side
+Convert String To Number Via JavaScript: https://dev.to/sanchithasr/7-ways-to-convert-a-string-to-number-in-javascript-4l
+Display 2 Decimal Points Via JavaScript: https://www.w3schools.com/jsref/jsref_tofixed.asp
+Center Table Content Via CSS: https://www.w3schools.com/css/css_table_align.asp
+Make A '<td>' Span The Entire Row In A Table: https://stackoverflow.com/questions/26400006/make-a-td-span-the-entire-row-in-a-table
+Currency Conversion Using PHP: https://stackoverflow.com/questions/3282578/currency-conversion-using-php
+Get Last Characters Of A String: https://stackoverflow.com/questions/5873810/how-can-i-get-last-characters-of-a-string
+FontAwesome Credit Card Icon: https://fontawesome.com/v5/icons/credit-card?s=solid&f=classic
+Avoid Entering Dot In '<input>' Field: https://stackoverflow.com/questions/70303820/avoid-enter-dot-in-input-field
+Mobile Phone Numbers Length Convention (Min 7, Max 15 Digits): https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s03.html#:~:text=Thanks%20to%20the%20international%20phone,in%20use%20contain%20seven%20digits.
+Twig Replace Part Of String With Chosen Character: https://stackoverflow.com/questions/40390773/twig-replace-part-of-string-with-chosen-character
+Laravel Get ID Of Row In Pivot Table: https://laracasts.com/discuss/channels/eloquent/get-id-of-row-in-pivot-table
+Laravel Access Additional Models From A Pivot: https://laravel.io/forum/02-06-2014-how-can-i-access-additional-models-from-a-pivot
+Laravel Eloquent 'withTrashed' On Relationship: https://stackoverflow.com/questions/51654757/laravel-eloquent-with-trashed-on-relationship
+'json_decode' 'Cannot use object of type stdClass as array' Error Fix: https://stackoverflow.com/questions/6815520/cannot-use-object-of-type-stdclass-as-array
+Change (Invert) Arrow Colors In Bootstrap Carousel: https://stackoverflow.com/questions/46249541/change-arrow-colors-in-bootstraps-carousel
+Comparing Dates In Twig: https://stackoverflow.com/questions/11774520/compare-date-with-a-specific-one-and-datetime-to-string-in-twig
+FontAwesome Shooping Basket Icon: https://fontawesome.com/v4/icon/shopping-basket
+Check If URL Contains A Given String Via JavaScript: https://stackoverflow.com/questions/4597050/how-to-check-if-the-url-contains-a-given-string
+Booleans Sent Through AJAX Appear As String On Server Side Fix: https://stackoverflow.com/questions/48879745/when-sending-boolean-values-through-ajax-call-php-gets-the-value-as-a-string
+Put Two <div> Elements Next To Each Other Using Bootstrap (Method #2): https://stackoverflow.com/questions/23686786/2-div-next-to-each-other-in-bootstrap
+Bootstrap Responsive Images: https://getbootstrap.com/docs/4.0/content/images/
+Enable Bootstrap Carousel Swipe on Mobile Devices: https://stackoverflow.com/questions/59632317/swipe-gesture-not-working-in-bootstrap-4-carousel
+Parse JSON Via JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+Remove A Specific Item From An Array In JavaScript: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
+Bootstrap 'w-md-100', 'w-md-75', 'w-md-50' and w-md-25' Classes For Specific Breakpoints: https://stackoverflow.com/questions/62244216/bootstrap-classes-for-specific-breakpoints
+Using Bootstrap Columns Not In A Row: https://stackoverflow.com/questions/49917129/using-col-in-d-flex-container-bootstrap-4
+PHP Append One Array To Another: https://stackoverflow.com/questions/4268871/php-append-one-array-to-another-not-array-push-or
+Prevent User From Typing In Text Field Without Disabling The Field: https://stackoverflow.com/questions/6951658/how-to-prevent-user-from-typing-in-text-field-without-disabling-the-field
+Bootstrap Borders: https://getbootstrap.com/docs/4.0/utilities/borders/
+Get The Value Of A Disabled Textbox With jQuery: https://stackoverflow.com/questions/11972431/get-the-value-of-a-disabled-textbox-with-jquery
+Bootstrap 'img-fluid' Class Not Keeping Aspect Ratio: https://stackoverflow.com/questions/53146379/img-fluid-is-not-scaling-png-when-used-directly-inside-col
+PHP Carbon Get Current Datetime: https://stackoverflow.com/questions/33854482/php-carbon-get-today-date-by-formatting-date
+Add Hours To Carbon DateTime Object: https://stackoverflow.com/questions/40787699/how-to-add-1-hour-to-date-carbon
+Bootstrap 5 Carousel With Multiple Items On A Single Page: https://codingyaar.com/bootstrap-carousel-multiple-items-increment-by-1/
+Select '<href' By Text Via jQuery: https://stackoverflow.com/questions/20265457/jquery-select-href-by-text
+Check Element Opacity Via jQuery: https://stackoverflow.com/questions/5293680/check-opacity-by-jquery
+Get Clicked Element Via jQuery: https://stackoverflow.com/questions/9012537/how-to-get-the-element-clicked-for-the-whole-document
+Close Bootstrap Hamburger Menu Via jQuery: https://stackoverflow.com/questions/71915612/how-to-close-hamburger-menu-when-clicked-outside-the-menu-using-javascript
+Check If Element Is Contained Within Another Via jQuery: https://stackoverflow.com/questions/2234979/how-to-check-in-javascript-if-one-element-is-contained-within-another
+Twig 'filter' Filter: https://twig.symfony.com/doc/3.x/filters/filter.html
+Create Mutually Exclusive Radio Buttons: https://stackoverflow.com/questions/3216512/how-can-i-create-mutually-exclusive-radio-buttons-with-different-names
+Get Radio Button Value For AJAX Call Via jQuery: https://stackoverflow.com/questions/18358980/getting-radio-button-value-by-ajax
+Respect Validation 'Between' Rule: https://respect-validation.readthedocs.io/en/1.1/rules/Between/
+Align Items Left & Right Via Bootstrap: https://stackoverflow.com/questions/18672452/left-align-and-right-align-within-div-in-bootstrap
+Center Content And Left Align It Via Bootstrap: https://stackoverflow.com/questions/35261292/bootstrap-centering-content-then-left-aligning-in-relation-to-center
+Restore Previous Version Of A File In Visual Studio Code: https://stackoverflow.com/questions/71318527/restore-previous-version-of-a-saved-file-in-vscode
+FontAwesome Building Icon: https://fontawesome.com/v5/icons/building?s=solid&f=classic
+Bootstrap 4 Button Text Alignment: https://stackoverflow.com/questions/52698515/bootstrap-4-button-text-alignment
+Embed Image In A '<button>' Element: https://stackoverflow.com/questions/8683528/embed-image-in-a-button-element
+Remove Image Background (Make Transparent) Online: https://www.remove.bg
+Bootstrap Colors: https://getbootstrap.com/docs/4.0/utilities/colors/
+Change Image Opacity On Button Hover Via JavaScript: https://stackoverflow.com/questions/49186992/changing-image-opacity-in-button-hover
+Vertical Alignment Of Text And Icon In Button: https://stackoverflow.com/questions/17478710/vertical-alignment-of-text-and-icon-in-button
+Load An AJAX DataTable On Button Click: https://write.corbpie.com/load-an-ajax-datatable-on-button-click/
+Setting Value Of 'datetime-local' Input From Date Via JavaScript: https://stackoverflow.com/questions/30166338/setting-value-of-datetime-local-from-date
+Laravel Eloquent Compare Date From Input To Date From Database Field (Use 'whereRaw'): https://stackoverflow.com/questions/44266337/laravel-eloquent-where-date-is-equal-or-greater-than-datetime
+DataTable Not Showing Properly In Modal Window Fix: https://datatables.net/forums/discussion/46718/datatable-not-showing-properly-in-modal-box
+Get HTML Element From DataTable Instance: https://datatables.net/reference/api/table().container()
+Capitalize First Letter In Twig: https://stackoverflow.com/questions/31199959/twig-capitalize-makes-other-letters-small
+Remove NULL Values From A Laravel Collection (Collection Type Changes!): https://laracasts.com/discuss/channels/laravel/remove-null-from-a-collection
+Make Bootstrap Modals Wider: https://write.corbpie.com/making-bootstrap-modals-wider/
+Generate Random String / Characters In JavaScript: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+HTML 'maxlength' Attribute: https://www.w3schools.com/tags/att_input_maxlength.asp
+HTML 'minlength' Attribute: https://www.w3schools.com/tags/att_input_minlength.asp
+HTML Strikethrough Element: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s
+Stripe Text Via Bootstrap Class: https://stackoverflow.com/questions/70656388/how-to-stripe-a-text-in-span-using-bootstrap-class
+Font Awesome Gift Icon: https://fontawesome.com/v4/icon/gift
+Vertically Center DataTable Column Content Via Bootstrap: https://getbootstrap.com/docs/4.0/utilities/vertical-align/
+Compare Two Dates In Laravel Carbon: https://www.itsolutionstuff.com/post/how-to-compare-two-dates-in-laravel-carbonexample.html
+PHP 'array_merge' Function: https://www.w3schools.com/php/func_array_merge.asp
+Bootstrap Breadcrumbs: https://getbootstrap.com/docs/5.0/components/breadcrumb/
+Bootstrap Shadows: https://getbootstrap.com/docs/5.0/utilities/shadows/
+Slim 4 Optional Segments (Parameters) In URL: https://www.slimframework.com/docs/v4/objects/routing.html#optional-segments
+Get Route Parameter In JavaScript: https://stackoverflow.com/questions/20302776/how-to-get-route-parameter-in-javascript
+Truncate Text With Ellipsis Using JavaScript: https://stackoverflow.com/questions/4700226/i-want-to-truncate-a-text-or-line-with-ellipsis-using-javascript
+Get The Current URL In Twig (Use 'current_url()' Function): https://stackoverflow.com/questions/28645470/how-do-you-get-the-current-url-in-twig
+
+Get Random Address In Bulgaria For Testing: https://www.randomnamescopy.com/Address/bulgaria/
+Generate Favicon Images: https://favicon.io/favicon-converter/
