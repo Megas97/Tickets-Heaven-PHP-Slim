@@ -1,0 +1,17 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+    <p>Thanks for {{ action == 'activated' ? 'choosing' : 'being part of' }} {{ siteTitle }}!</p>
+    <p>Your account was successfully {{ action }} by an administrator.</p>
+
+    {% if action == 'activated' %}
+
+        <p>You can now log in with it <a href="{{ baseUrl }}/login">here</a>.</p>
+
+    {% else %}
+
+        <p>You can no longer log in with it.</p>
+
+    {% endif %}
+
+{% endblock %}

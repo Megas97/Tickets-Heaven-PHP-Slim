@@ -1,0 +1,65 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Reset Password
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Reset Password</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-light border-0 margin-top-minus-10">
+        <article class="card-body medium-card-body mx-auto">
+            <h4 class="card-title text-center margin-top-minus-10">Reset Password</h4>
+            <p class="text-center">Reset your password</p>
+
+            <form id="password-reset-form" action="{{ url_for('password.reset') }}?email={{ email }}&identifier={{ identifier | url_encode }}" method="post">
+
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" title="New password"><i class="fa fa-lock"></i></span>
+                    </div>
+
+                    <input required type="password" id="password" name="password" class="form-control" placeholder="New password">
+
+                    <div class="input-group-append">
+                        <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" title="Confirm password"><i class="fa fa-lock"></i></span>
+                    </div>
+
+                    <input required type="password" id="confirm-password" name="confirm_password" class="form-control" placeholder="Confirm password">
+
+                    <div class="input-group-append">
+                        <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <button type="submit" id="password-reset-button" name="password-reset-button" class="btn btn-primary btn-block">Reset Password</button>
+                </div>
+
+                {{ csrf.ajax | raw }}
+                
+            </form>
+        </article>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/auth/password/reset.js"></script>
+{% endblock %}

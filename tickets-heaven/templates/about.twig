@@ -1,0 +1,34 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    About
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">About</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-light border-0 margin-top-minus-10">
+        <article class="card-body mx-auto">
+            <h4 class="card-title text-center margin-top-minus-10">About</h4>
+            <p class="text-center">Learn more about why <i>Tickets Heaven</i> is the perfect website for you</p>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-6">
+                    <p>If you are a passionate music lover and enjoy going to live venues to listen to your favourite artists then this is the place for you to plan your next
+                    adventures. Here you will find venues all over the world and artists of all and any musical genres, ethnicity, religion, cultural status, age, gender, etc.
+                    You can also choose events based on who is hosting them as well as choose venues based on who is their owner as we know how important it is to have a great
+                    time with your friends at a benevolent environment. Please remember to treat others the way you want to be treated at each event, nobody likes arrogant
+                    and unpleasant people and such and similar behavior will not be tolerated and you will be asked to leave the venue immediately. If you end up being
+                    pleased by our service do let your friends and family know about us so that we can make more and more people celebrate the joys of life by participating
+                    at awesome events where they can meet new people and/or meet their favourite artists :)</p>
+                    <img class="img-fluid logo-image" src="/uploads/default-pictures/tickets-heaven-logo.png" alt="Tickets Heaven Logo">
+                </div>
+            </div>
+        </article>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Contact
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-light border-0 margin-top-minus-10">
+        <article class="card-body mx-auto">
+            <h4 class="card-title text-center margin-top-minus-10">Support Ticket</h4>
+            <p class="text-center">Have a problem? Let us know below and we'll get back to you shortly</p>
+            <form id="contact-form" action="{{ url_for('contact') }}" method="post">
+                <div class="d-md-flex">
+                    <div class="col col-md-6 mx-auto pe-md-1">
+                        <input {{ auth.check ? 'disabled' : 'required' }} type="text" id="guest-email" name="guest_email" class="form-control mb-1 w-100" value="{{ auth.check ? auth.user.email : '' }}" placeholder="Email">
+                    </div>
+                    <div class="col col-md-3 mx-auto pe-md-1">
+                        <input {{ auth.check ? 'disabled' : 'required' }} type="text" id="guest-first-name" name="guest_first_name" class="form-control mb-1 w-100" value="{{ auth.check ? auth.user.first_name : '' }}" placeholder="First name">
+                    </div>
+                    <div class="col col-md-3 mx-auto">
+                        <input {{ auth.check ? 'disabled' : 'required' }} type="text" id="guest-last-name" name="guest_last_name" class="form-control mb-1 w-100"  value="{{ auth.check ? auth.user.last_name : '' }}" placeholder="Last name">
+                    </div>
+                </div>
+                <input required type="text" id="subject" name="subject" class="form-control mb-1" placeholder="Subject">
+                <textarea rows="7" required id="message" name="message" class="form-control mb-1" placeholder="Message"></textarea>
+                <button type="submit" class="btn btn-primary d-flex ms-auto">Send</button>
+
+                {{ csrf.ajax | raw }}
+
+            </form>
+        </article>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/contact.js"></script>
+{% endblock %}

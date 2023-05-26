@@ -1,0 +1,140 @@
+<div id="edit-details-modal-{{ venue.id }}" class="modal fade edit-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Venue Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0">
+                 <div class="card bg-light border-0 margin-top-minus-10">
+                    <article class="card-body wide-card-body text-center mx-auto">
+                        <h4 class="card-title mt-3 text-center">Venue Details</h4>
+                        <p class="text-center">View or change venue details</p>
+
+                        <form id="edit-venue-form" action="{{ url_for('owner.venues', { id: venue.id }) }}" method="post" enctype="multipart/form-data">
+
+                            <div class="form-group input-group mb-1 has-validation">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text unselectable" title="Name"><i class="fa fa-font"></i></span>
+                                </div>
+
+                                <input type="text" id="name" name="name" class="form-control" value="" placeholder="{{ venue.name ? venue.name : 'Name'}}">
+
+                                <div class="input-group-append">
+                                    <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ venue.name ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="form-group input-group mb-1 has-validation">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text unselectable" title="Description"><i class="fa fa-envelope"></i></span>
+                                </div>
+
+                                <textarea rows="3" type="text" id="description" name="description" class="form-control" value="" placeholder="{{ venue.description ? venue.description : 'Description' }}"></textarea>
+
+                                <div class="input-group-append">
+                                    <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ venue.description ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="form-group input-group mb-1 has-validation">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text unselectable" title="Address"><i class="fa fa-address-card"></i></span>
+                                </div>
+
+                                <textarea rows="2" type="text" id="address" name="address" class="form-control" value="" placeholder="{{ venue.address ? venue.address : 'Address' }}"></textarea>
+
+                                <div class="input-group-append">
+                                    <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ venue.address ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group input-group mb-1 has-validation">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text unselectable" title="Phone number"><i class="fa fa-phone"></i></span>
+                                </div>
+
+                                <select data-live-search="true" id="phone-code-id" name="phone_code_id" class="custom-select selectpicker" data-width="82px">
+                                    <option {{ (not venue.phone_code_id) ? 'selected' : '' }} disabled value="+XXX">+XXX</option>
+                                    
+                                    {% for phone_code in phone_codes %}
+
+                                        <option value="{{ phone_code.id }}" {{ venue.phone_code_id == phone_code.id ? 'selected' : '' }}>{{ phone_code.code }}</option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                                <input type="text" id="phone-number" name="phone_number" class="form-control" value="" placeholder="{{ venue.phone_number ? venue.phone_number : 'Phone number' }}">
+
+                                <div class="input-group-append">
+                                    <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ venue.phone_number ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                                </div>
+                            </div>
+                            <div class="d-md-flex">
+                                <div class="form-group input-group mb-1 has-validation me-md-1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text unselectable" title="Opens"><i class="fa fa-clock"></i></span>
+                                    </div>
+                                    <input required type="time" id="opens" name="opens" class="form-control" value="{{ opens ? opens : 'Opens' }}">
+                                </div>
+
+                                <div class="form-group input-group mb-1 has-validation ms-md-1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text unselectable" title="Closes"><i class="fa fa-clock"></i></span>
+                                    </div>
+                                    <input required type="time" id="closes" name="closes" class="form-control" value="{{ closes ? closes : 'Closes' }}">
+                                </div>
+                            </div>
+                            <div class="d-md-flex">
+                                <div class="form-group input-group mb-1 has-validation me-md-1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text unselectable" title="Remove venue events"><i class="fa fa-user"></i></span>
+                                    </div>
+
+                                    <select multiple data-live-search="true" data-actions-box="true" id="events" name="events" class="custom-select selectpicker" title="Remove venue events" data-width="calc(100% - 42px)">
+                                        <option disabled value="Remove venue events">Remove venue events</option>
+
+                                        {% for event in venue.hostedEvents %}
+
+                                            <option value="{{ event.id }}">{{ event.name }}</option>
+
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group input-group mb-1 h-100 ms-md-1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text unselectable" title="Venue picture"><i class="fa fa-upload"></i></span>
+                                    </div>
+                                    
+                                    <input type="file" accept="image/*" id="venue-picture" name="venue_picture" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-check d-inline-block">
+                                <input class="form-check-input checkbox-fix" {{ venue.venue_picture ? '' : 'disabled' }} type="checkbox" id="remove-venue-picture-{{ venue.id }}" name="remove_venue_picture" value="yes">
+                                <label class="form-check-label unselectable" for="remove-venue-picture-{{ venue.id }}">Remove Venue Picture</label>
+                            </div>
+                            
+                            <img src="{{ venue.venue_picture ? venue.venue_picture : '/uploads/venue-pictures/0.jpg' }}" id="view-venue-picture" class="img-fluid image" alt="Venue Picture">
+                            <br>
+                            <input type="hidden" id="current-id" name="current_id" value="{{ venue.id }}">
+
+                            <div class="form-group text-center mt-1">
+                                <button type="button" id="delete-venue-button" name="delete_venue_button" class="btn btn-danger btn-block">Delete Venue</button>
+                            </div>
+
+                            {{ csrf.ajax | raw }}
+                            
+                        </form>
+                    </article>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" id="update-venue-button" name="update_venue_button" class="btn btn-primary btn-block">Save Changes</button>
+                <button type="button" class="btn btn-secondary" id="cancel-update-venue-button" name="cancel_venue_update_button" data-bs-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

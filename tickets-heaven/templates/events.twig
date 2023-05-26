@@ -1,0 +1,118 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    {{ host.username != null ? (host.username == auth.user.username ? 'My Events' : host.getFullName() ~ '\'s Events') : 'Events' }}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+
+                {% if host %}
+
+                    <li class="breadcrumb-item"><a href="{{ url_for('hosts.all') }}">Hosts</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('host.details', { username: host.username }) }}">Host Details</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Host Events</li>
+
+                {% else %}
+
+                    <li class="breadcrumb-item active" aria-current="page">Events</li>
+
+                {% endif %}
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+
+        {% if host %}
+
+            {% if host.username == auth.user.username %}
+
+                {% if events | length == 0 %}
+
+                    <p class="text-center">There are no events hosted by you</p>
+
+                {% else %}
+
+                    <p class="text-center">Viewing all events hosted by you</p>
+
+                {% endif %}
+
+            {% else %}
+
+                {% if events | length == 0 %}
+
+                    <p class="text-center">There are no events hosted by <a href="{{ url_for('host.details', { username: host.username }) }}">{{ host.getFullName() }}</a></p>
+
+                {% else %}
+
+                    <p class="text-center">Viewing all events hosted by <a href="{{ url_for('host.details', { username: host.username }) }}">{{ host.getFullName() }}</a></p>
+
+                {% endif %}
+
+            {% endif %}
+
+        {% else %}
+
+            <p>&nbsp;</p>
+
+        {% endif %}
+
+        {% for event in events %}
+            <div class="card event-card me-3 mb-3">
+                <img src="{{ event.event_picture ? event.event_picture : '/uploads/event-pictures/0.jpg' }}" class="card-img-top mt-2 event-card-picture" alt="{{ event.name }} Event Picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <p class="card-text">
+                        Starts on {{ event.start_date }} at {{ event.start_time }}.
+                        <br>
+                        Ends on {{ event.end_date }} at {{ event.end_time }}.
+                        <br>
+
+                        {% if host %}
+                            
+                            <input type="hidden" class="hosted-events" value="{{ event.venue.hostedEvents }}">
+
+                            Events at <a href="{{ url_for('venue.details', { id: event.venue.id }) }}">{{ event.venue.name }}</a>: <span class="events-count">{{ event.venue.hostedEvents | length }}</span>
+
+                        {% else %}
+
+                            Hosted by <a href="{{ url_for('host.details', { username: event.host.username }) }}">{{ event.host.first_name }} {{ event.host.last_name }}</a> at <a href="{{ url_for('venue.details', { id: event.venue.id }) }}">{{ event.venue.name }}</a>.
+                        
+                        {% endif %}
+
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <div class="{{ event.extraPriceShown ? 'price-container-extra-currency' : 'price-container' }} mb-3">
+                            <input readonly class="form-control text-center {{ event.extraPriceShown ? 'price-currency-extra-currency' : 'price-currency' }}" name="price_currency" value="{{ event.singlePrice }}" />
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between flex-column flex-sm-row">
+                        <a href="{{ url_for('event.details', { id: event.id }) }}" class="btn btn-primary">View Details</a>
+                        <form class="buy-ticket-form d-inline" action="{{ url_for('event.details', {'id': event.id}) }}" method="post">
+                            <input type="hidden" class="choose-ticket-quantity" name="choose_ticket_quantity" value="1" />
+                            <button class="btn btn-success mt-1 mt-sm-0 w-100 buy-ticket-button" name="buy_ticket_button" type="submit">Buy Ticket</button>
+
+                            {{ csrf.ajax | raw }}
+
+                        </form>
+                        <input type="hidden" class="event-id" name="event_id" value="{{ event.id }}">
+                    </div>
+                    
+                    {% include 'partials/event-happening-label.twig' ignore missing %}
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/events.js"></script>
+{% endblock %}

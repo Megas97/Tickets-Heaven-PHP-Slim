@@ -1,0 +1,72 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Artist Details
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('artists.all') }}">Artists</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Artist Details</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+        <div class="card big-artist-card card-no-margin-and-padding mb-sm-3">
+            <img src="{{ artist.profile_picture ? artist.profile_picture : '/uploads/profile-pictures/0.jpg' }}" class="card-img-top mt-2 big-artist-card-picture" alt="{{ artist.getFullName() }} Artist Picture">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-center">{{ artist.getFullName() }}</h5>
+                <p class="card-text artist-description">{{ artist.description }}</p>
+
+                {% if events | length > 0 and artist.description is not null %}
+				
+                    <hr class="mt-2 mb-4 d-inline d-md-none">
+					
+                {% endif %}
+
+                {% if events | length > 0 %}
+
+                    <div id="eventsCarousel" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for event in events %}
+                                <div class="carousel-item {{ loop.index0 == 0 ? 'active' : '' }}" data-bs-interval="5000">
+                                    <img src="{{ event.event_picture ? event.event_picture : '/uploads/event-pictures/0.jpg' }}" class="d-block w-100 venue-event-picture" alt="{{ event.name }} Event Picture">
+                                    <div class="carousel-caption d-md-block">
+
+                                        {% include 'partials/event-happening-label.twig' ignore missing %}
+                                        
+                                        <br>
+                                        <h5>{{ event.name }}</h5>
+                                        <p>{{ event.description }}</p>
+                                        <a href="{{ url_for('event.details', { id: event.id }) }}" class="btn btn-primary">View Details</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#eventsCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#eventsCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/artist-details.js"></script>
+{% endblock %}

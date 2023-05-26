@@ -1,0 +1,37 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Artists
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Artists</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+
+        {% for artist in artists %}
+            <div class="card artist-card me-3 mb-3">
+                <img src="{{ artist.profile_picture ? artist.profile_picture : '/uploads/profile-pictures/0.jpg' }}" class="card-img-top mt-2 artist-card-picture" alt="{{ artist.getFullName() }} Artist Picture">
+                <div class="card-body text-center">
+                    <h5 class="card-title mt-1 mb-3">{{ artist.getFullName() }}</h5>
+                    <a href="{{ url_for('artist.details', { username: artist.username }) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/artists.js"></script>
+{% endblock %}

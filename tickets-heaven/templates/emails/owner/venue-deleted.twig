@@ -1,0 +1,9 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Your venue '{{ venueName }}' has been deleted.</p>
+
+    <p>For more details please visit your <a href="{{ baseUrl }}/owner">Owner Panel</a>.</p>
+
+{% endblock %}

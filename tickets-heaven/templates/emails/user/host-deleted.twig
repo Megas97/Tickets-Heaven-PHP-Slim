@@ -1,0 +1,17 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Host '{{ hostName }}' has been deleted. Event '{{ eventName }}' which you are going to attend now has no host set.</p>
+
+    {% if user.id %}
+
+        <p>For more details please visit your <a href="{{ baseUrl }}/orders">Orders</a>.</p>
+
+    {% else %}
+
+        <p>If you would like to keep track of your order history please <a href="{{ baseUrl }}/register">Register</a> and visit your <a href="{{ baseUrl }}/orders">Orders</a>.</p>
+
+    {% endif %}
+
+{% endblock %}

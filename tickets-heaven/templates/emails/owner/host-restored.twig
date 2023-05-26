@@ -1,0 +1,9 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Event '{{ eventName }}' hosted in your venue '{{ venueName }}' now has a host set.</p>
+
+    <p>For more details please visit your <a href="{{ baseUrl }}/owner">Owner Panel</a>.</p>
+
+{% endblock %}

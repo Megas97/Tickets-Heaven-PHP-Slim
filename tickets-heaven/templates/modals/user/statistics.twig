@@ -1,0 +1,66 @@
+<div id="view-{{ event ? 'event' : 'venue' }}-statistics-modal-{{ event ? event.id : venue.id }}" class="modal fade view-modal text-center" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View {{ event ? 'Event' : 'Venue' }} Statistics</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-4 justify-content-center">
+                    <p>If the starting and ending datetimes are the same then the results will only apply to the selected date.</p>
+                    <div class="d-flex flex-column flex-lg-row">
+                        <div class="col-12 col-lg-6 pe-lg-1">
+                            <span>Please select a starting datetime</span>
+                            <div class="form-group input-group mb-1 has-validation">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text unselectable" title="Start"><i class="fa fa-clock"></i></span>
+                                </div>
+                                <input type="datetime-local" id="start" name="start" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 ps-lg-1">
+                            <span>Please select an ending datetime</span>
+                            <div class="form-group input-group mb-1 has-validation">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text unselectable" title="End"><i class="fa fa-clock"></i></span>
+                                </div>
+                                <input type="datetime-local" id="end" name="end" class="form-control" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <p>Total number of tickets sold during the selected period: <span id="total-sold-tickets"></span></p>
+                    </div>
+                    <div class="d-flex justify-content-center mb-2">
+                        <p>Total income earned during the selected period: <span id="total-{{ event ? 'event' : 'venue' }}-income"></span></p>
+                    </div>
+                    <div class="d-flex justify-content-center mb-4">
+                        <button type="button" id="view-statistics-results-button" class="btn btn-success">View Results</button>
+                    </div>
+                    <table id="{{ event ? 'event' : 'venue' }}StatisticsTable" class="table w-100">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th class="min-desktop dropdown-filter">User</th>
+
+                                {% if venue %}
+
+                                    <th class="dropdown-filter">Event</th>
+                                    
+                                {% endif %}
+
+                                <th class="min-desktop dropdown-filter">Ticket Quantity</th>
+                                <th class="min-desktop">Single Price</th>
+                                <th class="min-desktop">Total Price</th>
+                                <th class="min-desktop">Date</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

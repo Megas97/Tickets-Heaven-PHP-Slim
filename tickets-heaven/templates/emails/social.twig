@@ -1,0 +1,10 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+    <p>Thanks for joining {{ siteTitle }}!</p>
+    <p>This is the right place for you if you are a fan of music and live shows and events.</p>
+    <p>Below are your temporary credentials which you should change as soon as possible:</p>
+    <p>Username: {{ randomUsername }}</p>
+    <p>Password: {{ randomPassword }}</p>
+    <p>You can now use your {{ socialService }} account to log in as well.</p>
+{% endblock %}

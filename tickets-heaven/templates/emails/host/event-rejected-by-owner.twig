@@ -1,0 +1,9 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Venue owner {{ owner.getFullName() }} has rejected your event '{{ eventName }}' hosted in their venue '{{ venueName }}'.</p>
+    
+    <p>For more details please visit your <a href="{{ baseUrl }}/host">Host Panel</a>.</p>
+
+{% endblock %}

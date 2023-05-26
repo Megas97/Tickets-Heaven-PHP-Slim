@@ -1,0 +1,100 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    {{ siteTitle }} - The best place for music lovers on and beyond this world!
+{% endblock %}
+
+{% block content %}
+    <div class="row mt-4 mt-sm-4 justify-content-center">
+        <h5 class="text-center mb-1 {{ events | length == 0 ? 'd-none' : '' }}">Events</h5>
+        <div id="multiEventsCarousel" class="carousel multi-card-carousel {{ events | length == 0 ? 'd-none' : '' }}" data-bs-touch="true" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner {{ events | length <= 3 ? 'justify-content-center' : '' }}">
+                {% for event in events %}
+                    <div class="carousel-item {{ loop.index0 == 0 ? 'active' : '' }} event-item">
+                        <div class="card multi-events-card">
+                            <div class="card-body p-0">
+                                <img src="{{ event.event_picture ? event.event_picture : '/uploads/event-pictures/0.jpg' }}" class="d-block w-100 multi-carousel-event-card-picture" alt="{{ event.name }} Event Picture">
+                                <div class="carousel-caption d-md-block">
+
+                                    {% include 'partials/event-happening-label.twig' ignore missing %}
+                                    
+                                    <br>
+                                    <h5 class="card-title">{{ event.name }}</h5>
+                                    <p class="card-text carousel-card-description">{{ event.description }}</p>
+                                    <a href="{{ url_for('event.details', { id: event.id }) }}" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev d-none d-sm-flex" type="button" data-bs-target="#multiEventsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next d-none d-sm-flex" type="button" data-bs-target="#multiEventsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <hr class="mt-3 mb-2 {{ events | length == 0 ? 'd-none' : '' }}">
+        <h5 class="text-center mb-1 {{ artists | length == 0 ? 'd-none' : '' }}">Artists</h5>
+        <div id="multiArtistsCarousel" class="carousel multi-card-carousel {{ artists | length == 0 ? 'd-none' : '' }}" data-bs-touch="true" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner {{ artists | length <= 3 ? 'justify-content-center' : '' }}">
+                {% for artist in artists %}
+                    <div class="carousel-item {{ loop.index0 == 0 ? 'active' : '' }} artist-item">
+                        <div class="card multi-carousel-artist-card">
+                            <div class="card-body p-0">
+                                <img src="{{ artist.profile_picture ? artist.profile_picture : '/uploads/profile-pictures/0.jpg' }}" class="d-block w-100 multi-carousel-artist-card-picture" alt="{{ artist.getFullName() }} Artist Picture">
+                                <div class="carousel-caption d-md-block">
+                                    <h5 class="card-title mt-1 mb-3">{{ artist.getFullName() }}</h5>
+                                    <a href="{{ url_for('artist.details', { username: artist.username }) }}" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev d-none d-sm-flex" type="button" data-bs-target="#multiArtistsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next d-none d-sm-flex" type="button" data-bs-target="#multiArtistsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <hr class="mt-3 mb-2 {{ artists | length == 0 ? 'd-none' : '' }}">
+        <h5 class="text-center mb-1 {{ venues | length == 0 ? 'd-none' : '' }}">Venues</h5>
+        <div id="multiVenuesCarousel" class="carousel multi-card-carousel {{ venues | length == 0 ? 'd-none' : '' }} mb-1" data-bs-touch="true" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner {{ venues | length <= 3 ? 'justify-content-center' : '' }}">
+                {% for venue in venues %}
+                    <div class="carousel-item {{ loop.index0 == 0 ? 'active' : '' }} venue-item">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <img src="{{ venue.venue_picture ? venue.venue_picture : '/uploads/venue-pictures/0.jpg' }}" class="d-block w-100 multi-carousel-venue-card-picture" alt="{{ event.name }} Event Picture">
+                                <div class="carousel-caption d-md-block">
+                                    <h5 class="card-title">{{ venue.name }}</h5>
+                                    <p class="card-text description carousel-card-description">{{ venue.description }}</p>
+                                    <a href="{{ url_for('venue.details', { id: venue.id }) }}" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev d-none d-sm-flex" type="button" data-bs-target="#multiVenuesCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next d-none d-sm-flex" type="button" data-bs-target="#multiVenuesCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/home.js"></script>
+{% endblock %}

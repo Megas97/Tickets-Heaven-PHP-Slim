@@ -1,0 +1,22 @@
+{% extends 'emails/base.twig' %}
+
+{% block styles %}
+    <style>
+        .button {
+            font: bold 14px Arial;
+            text-decoration: none;
+            background-color: green;
+            color: white;
+            padding: 6px 10px 6px 10px;
+            border-radius: 4px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>Thanks for joining {{ siteTitle }}!</p>
+    <p>This is the right place for you if you are a fan of music and live shows and events.</p>
+    <p>You have one last step remaining before you can start enjoying all of the features we offer.</p>
+    <p>Activate your account using the button below:</p>
+    <a class="button" href="{{ baseUrl }}{{ url_for('activate') }}?email={{ user.email }}&identifier={{ identifier | url_encode }}">Activate Account</a>
+{% endblock %}

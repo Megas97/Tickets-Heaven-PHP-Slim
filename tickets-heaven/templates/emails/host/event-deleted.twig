@@ -1,0 +1,9 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Your event '{{ eventName }}' has been deleted.</p>
+
+    <p>For more details please visit your <a href="{{ baseUrl }}/host">Host Panel</a>.</p>
+    
+{% endblock %}

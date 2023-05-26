@@ -1,0 +1,149 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    My Cart
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Cart</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row margin-top-minus-10"></div>
+
+    <table id="cartEventsTable" class="table w-100">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th class="min-desktop dropdown-filter">Ticket Quantity</th>
+            <th class="min-desktop">Ticket Single Price</th>
+            <th class="min-desktop">Ticket Total Price</th>
+            <th class="min-desktop">Actions</th>
+        </tr>
+      </thead>
+    </table>
+
+    {% if not auth.check and cartItemsCount > 0 %}
+
+        <article id="guest-checkout-details" class="card-body medium-card-body text-center mx-auto">
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="First name"><i class="fa fa-user"></i></span>
+                </div>
+
+                <input required type="text" id="guest-first-name" name="guest_first_name" class="form-control" value="" placeholder="First name">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="Last name"><i class="fa fa-user"></i></span>
+                </div>
+
+                <input required type="text" id="guest-last-name" name="guest_last_name" class="form-control" value="" placeholder="Last name">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="Email"><i class="fa fa-envelope"></i></span>
+                </div>
+
+                <input required type="email" id="guest-email" name="guest_email" class="form-control" value="" placeholder="Email">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="Credit card number"><i class="fas fa-credit-card"></i></span>
+                </div>
+
+                <input required type="number" id="guest-credit-card-number" name="guest_credit_card_number" min="0" class="form-control" value="" placeholder="Credit card number">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+        </article>
+
+    {% elseif auth.check and not auth.user.credit_card_number and cartItemsCount > 0 %}
+
+        <article id="guest-checkout-details" class="card-body medium-card-body text-center mx-auto">
+            <div class="form-group input-group mb-1 has-validation">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" title="Credit card number"><i class="fas fa-credit-card"></i></span>
+                </div>
+
+                <input required type="number" id="guest-credit-card-number" name="guest_credit_card_number" min="0" class="form-control" value="" placeholder="Credit card number">
+
+                <div class="input-group-append">
+                    <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                </div>
+            </div>
+        </article>
+        
+    {% endif %}
+
+    <article id="checkout-promo-code-form" class="card-body medium-card-body text-center mx-auto">
+        <div class="form-group input-group mb-1 has-validation">
+            <div class="input-group-prepend">
+                <span class="input-group-text" title="Promo code"><i class="fas fa-gift"></i></span>
+            </div>
+
+            <input type="text" id="checkout-promo-code" {{ promoCode ? 'disabled' : '' }} name="checkout_promo_code" class="form-control" maxlength="6" value="{{ promoCode ? promoCode : '' }}" placeholder="Promo code">
+
+            <button type="button" id="checkout-apply-promo-code-button" class="btn btn-secondary {{ promoCode ? 'd-none' : '' }}">Apply</button>
+
+            <button type="button" id="checkout-remove-promo-code-button" class="btn btn-secondary {{ not promoCode ? 'd-none' : '' }}">Remove</button>
+
+            <div class="input-group-append">
+                <button type="button" title="Clear value" class="btn btn-info {{ promoCode ? '' : 'clear-button' }}"><i class="fa fa-copy"></i></button>
+            </div>
+        </div>
+    </article>
+
+    <div class="row">
+        <div class="col text-center mt-3">
+            <p>Total: 
+                <span id="total-due" class="{{ totalPromoInDefaultCurrency ? 'text-decoration-line-through' : '' }}">{{ totalInDefaultCurrency | number_format(2) }} {{ auth.check ? (auth.user.defaultCurrency.code ? auth.user.defaultCurrency.code : settings.app.default_currency) : settings.app.default_currency }}</span>
+                <span id="total-promo-due" class="{{ totalPromoInDefaultCurrency ? '' : 'd-none' }}">{{ totalPromoInDefaultCurrency | number_format(2) }} {{ auth.check ? (auth.user.defaultCurrency.code ? auth.user.defaultCurrency.code : settings.app.default_currency) : settings.app.default_currency }}</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <button id="checkout-button" class="btn btn-success mt-3" {{ cartItemsCount == 0 ? 'disabled' : '' }}>Checkout</button>
+        </div>
+    </div>
+
+    {{ csrf.ajax | raw }}
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/cart.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+{% endblock %}

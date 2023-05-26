@@ -1,0 +1,103 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Login
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Login</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-light border-0 margin-top-minus-10">
+        <article class="card-body medium-card-body mx-auto">
+            <h4 class="card-title text-center margin-top-minus-10">Login</h4>
+            <p class="text-center">Log in with your existing account</p>
+
+            <div class="text-center">
+
+                <form id="github-login-form" class="d-inline-block" action="{{ url_for('github.auth') }}" method="post">
+                    <button type="submit" data-type="GitHub" class="btn btn-block btn-github mt-1 mb-1"> <i class="fab fa-github"></i>  Log in via GitHub</button>
+
+                    {{ csrf.ajax | raw }}
+
+                </form>
+
+                <form id="facebook-login-form" class="d-inline-block" action="{{ url_for('facebook.auth') }}" method="post">
+                    <button type="submit" data-type="Facebook" class="btn btn-block btn-facebook mt-1 mb-1"> <i class="fab fa-facebook-f"></i>  Log in via Facebook</button>
+
+                    {{ csrf.ajax | raw }}
+
+                </form>
+
+            </div>
+
+            <p class="divider-text">
+                <span class="bg-light">OR</span>
+            </p>
+
+            <form id="login-form" action="{{ url_for('login') }}" method="post">
+
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" title="Username or email"><i class="fa fa-user"></i></span>
+                    </div>
+
+                    <input required type="text" id="username-or-email" name="username_or_email" class="form-control" value="" placeholder="Username or email">
+
+                    <div class="input-group-append">
+                        <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" title="Password"><i class="fa fa-lock"></i></span>
+                    </div>
+
+                    <input required type="password" id="password" name="password" class="form-control" value="" placeholder="Password">
+
+                    <div class="input-group-append">
+                        <button type="button" title="Clear value" class="btn btn-info clear-button"><i class="fa fa-copy"></i></button>
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-check">
+                    <input type="checkbox" id="remember-me" name="remember_me" class="form-check-input" value="yes">
+                    <label class="form-check-label unselectable" for="remember-me">Remember Me</label>
+                    <a class="float-end" id="forgot-password-link-end" href="{{ url_for('password.recover') }}">Forgot Password?</a>
+                </div>
+
+                <a id="forgot-password-link-stacked" href="{{ url_for('password.recover') }}">Forgot Password?</a>
+                <br>
+
+                <div id="login-button-container">
+                    <div class="form-group">
+                        <button type="submit" id="login-button" class="btn btn-primary btn-block">Log In</button>
+                    </div>
+
+                    <input type="hidden" id="is-post-login-page" name="is-post-login-page" value="yes" />
+                    <br>
+                    <p class="text-center ms-auto my-auto">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+                </div>
+
+                {{ csrf.ajax | raw }}
+                
+            </form>
+        </article>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/auth/login-social.js"></script>
+    <script src="/js/auth/login.js"></script>
+{% endblock %}

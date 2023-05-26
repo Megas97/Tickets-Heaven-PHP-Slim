@@ -1,0 +1,17 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    {% if type == 'update' and role == 'host' %}
+
+        <p>Host {{ host.getFullName() }} wants to move their event called '{{ eventName }}' which you are going to attend in venue '{{ venueName }}'. Please keep an eye if the venue owner accepts or rejects the venue change.</p>
+
+    {% elseif type == 'update' and role == 'admin' %}
+
+        <p>Admin {{ host.getFullName() }} has moved your event '{{ eventName }}' to venue '{{ venueName }}'.</p>
+
+    {% endif %}
+    
+    <p>For more details please visit your <a href="{{ baseUrl }}/host">Host Panel</a>.</p>
+
+{% endblock %}

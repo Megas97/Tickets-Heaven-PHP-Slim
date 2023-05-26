@@ -1,0 +1,9 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Venue owner {{ owner.getFullName() }} has approved event '{{ eventName }}' at which you participate in their venue '{{ venueName }}'.</p>
+    
+    <p>For more details please visit your <a href="{{ baseUrl }}/artist">Artist Panel</a>.</p>
+
+{% endblock %}

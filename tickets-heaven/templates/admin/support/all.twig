@@ -1,0 +1,49 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Support Tickets
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Support Tickets</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row mb-5 margin-top-minus-10">
+        <div class="col-sm-12 text-center mb-4 admin-no-top-button"></div>
+    </div>
+    <table id="supportTicketsListTable" class="table w-100">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th class="dropdown-filter">First Name</th>
+            <th class="dropdown-filter">Last Name</th>
+            <th class="dropdown-filter">Full Name</th>
+            <th class="min-desktop dropdown-filter">Email</th>
+            <th class="min-desktop">Subject</th>
+            <th class="min-desktop">Submitted</th>
+            <th class="min-desktop">Actions</th>
+        </tr>
+      </thead>
+    </table>
+
+    {{ csrf.ajax | raw }}
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/admin/support/all.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+{% endblock %}

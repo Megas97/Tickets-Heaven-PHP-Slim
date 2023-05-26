@@ -1,0 +1,15 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Venue '{{ venueName }}' has been deleted. All of your hosted events listed below are now left without a set venue.</p>
+
+    {% for event in hostEvents %}
+
+        <li>{{ event.name }}</li>
+
+    {% endfor %}
+
+    <p>For more details please visit your <a href="{{ baseUrl }}/host">Host Panel</a>.</p>
+
+{% endblock %}

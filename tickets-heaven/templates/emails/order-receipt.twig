@@ -1,0 +1,63 @@
+{% extends 'emails/base.twig' %}
+
+{% block styles %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>Thanks for using {{ siteTitle }}!</p>
+
+    <p>Below you'll find information about your last order.</p>
+
+    <table cellpadding="12">
+        <tr>
+            <th>Event</th>
+            <th>Ticket Quantity</th>
+            <th>Ticket Single Price</th>
+            <th>Ticket Total Price</th>
+        </tr>
+
+        {% for event in events %}
+            
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.ticket_quantity }}</td>
+                <td>{{ event.singlePromoPrice ? ('<s>' ~ event.singlePrice ~ '</s><br>' ~ event.singlePromoPrice) | raw : event.singlePrice }}</td>
+                <td>{{ event.totalPromoPrice ? ('<s>' ~ event.totalPrice ~ '</s><br>' ~ event.totalPromoPrice) | raw : event.totalPrice }}</td>
+            </tr>
+
+        {% endfor %}
+
+        <tr>
+            <td colspan="4">Total: 
+
+                {% if totalPromoInDefaultCurrency %}
+
+                    <s>{{ totalInDefaultCurrency | number_format(2) }} {{ auth.check ? (auth.user.defaultCurrency.code ? auth.user.defaultCurrency.code : settings.app.default_currency) : settings.app.default_currency }}</s>
+
+                    {{ totalPromoInDefaultCurrency | number_format(2) }} {{ auth.check ? (auth.user.defaultCurrency.code ? auth.user.defaultCurrency.code : settings.app.default_currency) : settings.app.default_currency }}
+
+                {% else %}
+
+                    {{ totalInDefaultCurrency | number_format(2) }} {{ auth.check ? (auth.user.defaultCurrency.code ? auth.user.defaultCurrency.code : settings.app.default_currency) : settings.app.default_currency }}
+
+                {% endif %}
+            </td>
+        </tr>
+
+    </table>
+
+    {% set length = user.credit_card_number | length - 5 %}
+
+    <p>Paid by credit card {% for i in 0..length %}*{% endfor %}{{ user.credit_card_number | slice(-4) }}.</p>
+
+{% endblock %}

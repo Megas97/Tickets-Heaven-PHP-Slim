@@ -1,0 +1,44 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Admin Panel
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Admin Panel</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+        <button type="button" id="venues-button" name="venues_button" class="image-button btn btn-secondary d-flex flex-column panel-button img-fluid me-md-5 mt-md-5">
+            <img src="uploads/default-pictures/venues-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Venues</strong></span>
+        </button>
+        <button type="button" id="events-button" name="events_button" class="image-button btn btn-secondary d-flex flex-column panel-button img-fluid me-md-5 mt-4 mt-md-5">
+            <img src="uploads/default-pictures/events-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Events</strong></span>
+        </button>
+        <button type="button" id="users-button" name="users_button" class="image-button btn btn-secondary d-flex flex-column panel-button img-fluid mt-4 mt-md-5">
+            <img src="uploads/default-pictures/users-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Users</strong></span>
+        </button>
+    </div>
+    <div class="row mb-4 mb-md-0 justify-content-center">
+        <button type="button" id="promotions-button" name="promotions_button" class="image-button btn btn-secondary d-flex flex-column panel-button img-fluid mt-4 me-md-5">
+            <img src="uploads/default-pictures/promotions-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Promotions</strong></span>
+        </button>
+        <button type="button" id="support-tickets-button" name="support_tickets_button" class="image-button btn btn-secondary d-flex flex-column panel-button img-fluid mt-4">
+            <img src="uploads/default-pictures/support-tickets-button-logo.png" class="img-fluid"></img>
+            <span class="align-self-center"><strong>Support Tickets</strong></span>
+        </button>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/admin/panel.js"></script>
+{% endblock %}

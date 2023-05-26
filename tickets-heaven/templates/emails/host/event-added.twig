@@ -1,0 +1,9 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    <p>Admin {{ admin.getFullName() }} has created an event called '{{ eventName }}' in venue '{{ venueName }}' and has assigned you as its host. You can reject the event from your <a href="{{ baseUrl }}/host">Host Panel</a>.</p>
+    
+    <p>For more details please visit your <a href="{{ baseUrl }}/host">Host Panel</a>.</p>
+
+{% endblock %}

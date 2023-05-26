@@ -1,0 +1,31 @@
+{% extends 'emails/base.twig' %}
+
+{% block styles %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <p>Artist '{{ artistName }}' has been deleted. They have been removed from all events in which they participate hosted by you listed below:</p>
+
+    <table cellpadding="12">
+        <tr>
+            <th>Event</th>
+            <th>Venue</th>
+        </tr>
+         {% for event in artistEvents %}
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.venue.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p>For more details please visit your <a href="{{ baseUrl }}/host">Host Panel</a>.</p>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+
+    {% if type == 'add' and role == 'host' %}
+
+        <p>Host {{ host.getFullName() }} wants to create an event called '{{ eventName }}' in your venue '{{ venueName }}'. Please respond to their request from your <a href="{{ baseUrl }}/owner">Owner Panel</a>.</p>
+
+    {% elseif type == 'update' and role == 'host' %}
+
+        <p>Host {{ host.getFullName() }} wants to move their event called '{{ eventName }}' in your venue '{{ venueName }}'. Please respond to their request from your <a href="{{ baseUrl }}/owner">Owner Panel</a>.</p>
+
+    {% elseif type == 'add' and  role == 'admin' %}
+
+        <p>Admin {{ host.getFullName() }} has created an event called '{{ eventName }}' in your venue '{{ venueName }}'. You can reject the event from your <a href="{{ baseUrl }}/owner">Owner Panel</a>.</p>
+
+    {% elseif type == 'update' and role == 'admin' %}
+
+        <p>Admin {{ host.getFullName() }} has moved an event called '{{ eventName }}' in your venue '{{ venueName }}'. You can reject the event from your <a href="{{ baseUrl }}/owner">Owner Panel</a>.</p>
+
+    {% endif %}
+    
+    <p>For more details please visit your <a href="{{ baseUrl }}/owner">Owner Panel</a>.</p>
+
+{% endblock %}

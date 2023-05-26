@@ -1,0 +1,209 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    View Event
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.events') }}">Events</a></li>
+                <li class="breadcrumb-item active" aria-current="page">View Event</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-light border-0 margin-top-minus-10">
+        <article class="card-body wide-card-body text-center mx-auto">
+            <h4 class="card-title text-center margin-top-minus-10">Event Details</h4>
+            <p class="text-center">View or change event details</p>
+
+            <form id="view-event-form" action="{{ url_for('admin.events.view', { id: event.id }) }}" method="post" enctype="multipart/form-data">
+
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text unselectable" title="Name"><i class="fa fa-font"></i></span>
+                    </div>
+
+                    <input type="text" id="name" name="name" class="form-control" value="" placeholder="{{ event.name ? event.name : 'Name'}}">
+
+                    <div class="input-group-append">
+                        <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ event.name ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text unselectable" title="Description"><i class="fa fa-info-circle"></i></span>
+                    </div>
+
+                    <textarea rows="3" type="text" id="description" name="description" class="form-control" value="" placeholder="{{ event.description ? event.description : 'Description' }}"></textarea>
+                
+                    <div class="input-group-append">
+                        <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ event.description ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text unselectable" title="Location"><i class="fa fa-address-card"></i></span>
+                    </div>
+
+                    <textarea rows="3" type="text" id="location" name="location" class="form-control" value="" placeholder="{{ event.location ? event.location : (event.venue.address ? event.venue.address : 'Location') }}"></textarea>
+
+                    <div class="input-group-append">
+                        <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ event.location ? '' : (event.venue.address ? '' : 'disabled') }}><i class="fa fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation me-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text unselectable" title="Starts"><i class="fa fa-clock"></i></span>
+                        </div>
+                        <input type="datetime-local" id="starts" name="starts" class="form-control" value="{{ starts ? starts : '' }}">
+                    </div>
+
+                    <div class="form-group input-group mb-1 has-validation ms-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text unselectable" title="Ends"><i class="fa fa-clock"></i></span>
+                        </div>
+                        <input type="datetime-local" id="ends" name="ends" class="form-control" value="{{ ends ? ends : '' }}">
+                    </div>
+                </div>
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation me-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text unselectable" title="Event host"><i class="fa fa-user"></i></span>
+                        </div>
+                        
+                        <select data-live-search="true" id="host" name="host" class="custom-select selectpicker" data-width="calc(100% - 42px)">
+                            <option disabled value="Event host" {{ event.host_id == 0 ? 'selected' : '' }}>Event host</option>
+
+                            {% for host in hosts %}
+
+                                <option value="{{ host.id }}" {{ host.id == event.host_id ? 'selected' : '' }}>{{ host.getFullName() }}</option>
+
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="form-group input-group mb-1 has-validation ms-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text unselectable" title="Event venue"><i class="fa fa-building"></i></span>
+                        </div>
+
+                        <select data-live-search="true" id="venue" name="venue" class="custom-select selectpicker" data-width="calc(100% - 42px)">
+                            <option disabled value="Event venue" {{ event.venue_id == 0 ? 'selected' : '' }}>Event venue</option>
+
+                            {% for venue in venues %}
+
+                                <option value="{{ venue.id }}" {{ venue.id == event.venue_id ? 'selected' : '' }}>{{ venue.name }}</option>
+
+                            {% endfor %}
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group input-group mb-1 has-validation">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text unselectable" title="Event participants"><i class="fa fa-microphone"></i></span>
+                    </div>
+
+                    <select multiple data-live-search="true" data-actions-box="true" id="artists" name="artists" class="custom-select selectpicker" title="Event participants" data-width="calc(100% - 38px)">
+                        <option disabled value="Event participants">Event participants</option>
+
+                        {% for artist in artists %}
+
+                            <option value="{{ artist.id }}" {{ ((artist.id in participants) and (attribute(artist, 'event_' ~ event.id ~ '_artist_approved') == null or attribute(artist, 'event_' ~ event.id ~ '_artist_approved') == true)) ? 'selected' : '' }}>{{ attribute(artist, 'event_' ~ event.id ~ '_artist_approved') == null ? '*' : '' }}{{ artist.getFullName() }}</option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+                <div class="d-md-flex">
+                    <div class="form-group input-group mb-1 has-validation me-md-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" title="Ticket price"><i class="fas fa-dollar-sign"></i></span>
+                        </div>
+
+                        <select data-live-search="true" id="currency-id" name="currency_id" class="custom-select selectpicker" data-width="82px">
+                            <option disabled {{ event.currency_id == 0 ? 'selected' : '' }} value="XXX">XXX</option>
+
+                            {% for currency in currencies %}
+
+                                <option value="{{ currency.id }}" {{ currency.id == event.currency_id ? 'selected' : '' }}>{{ currency.code }}</option>
+
+                            {% endfor %}
+                            
+                        </select>
+
+                        <input type="number" id="ticket-price" name="ticket_price" class="form-control" min="0" step="0.1" lang="en" value="" placeholder="{{ event.ticket_price ? event.ticket_price | number_format(2) : 'Ticket price' }}">
+
+                        <div class="input-group-append">
+                            <button type="button" title="Set or unset value" class="btn btn-secondary copy-button" {{ event.ticket_price ? '' : 'disabled' }}><i class="fa fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-group mb-1 ms-md-1 h-100">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text unselectable" title="Event picture"><i class="fa fa-upload"></i></span>
+                        </div>
+                        
+                        <input type="file" accept="image/*" id="event-picture" name="event_picture" class="form-control">
+                    </div>
+                </div>
+                <div class="form-check d-inline-block">
+                    <input class="form-check-input checkbox-fix" {{ event.event_picture ? '' : 'disabled' }} type="checkbox" id="remove-event-picture" name="remove_event_picture" value="yes">
+                    <label class="form-check-label unselectable" for="remove-event-picture">Remove Event Picture</label>
+                </div>
+                <img src="{{ event.event_picture ? event.event_picture : '/uploads/event-pictures/0.jpg' }}" id="view-event-picture" class="img-fluid" alt="Event Picture">
+                <br>
+                <input type="hidden" id="current-id" name="current_id" value="{{ event.id }}">
+                
+                <div class="row mt-1 ms-md-2">
+                    <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end pe-1 view-event-action-buttons">
+                        <div class="form-group text-center">
+                            <button type="submit" id="update-event-button" name="update_event_button" class="btn btn-primary btn-block">Edit Details</button>
+                        </div>
+                        <span id="non-breaking-space">&nbsp;</span>
+                        <div class="form-group text-center">
+                            <a id="view-event-promo-code-button" href="{{ url_for('admin.promotions.view', { id: event.promoCode.id }) }}" class="btn btn-secondary text-white {{ event.promoCode.id ? '' : 'disabled' }}">View Promo Code</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start ps-0 mt-1 mt-md-0 view-event-action-buttons">
+                        <div class="form-group text-center">
+                            <a id="view-event-statistics-button" href="#view-event-statistics-modal-{{ event.id }}" data-bs-toggle="modal" data-keyboard="true" class="btn btn-info text-white view-event-statistics-button">View Statistics</a>
+                        </div>
+                        <span id="non-breaking-space">&nbsp;</span>
+                        <div class="form-group text-center">
+                            <button type="submit" id="delete-event-button" name="delete_event_button" class="btn btn-danger btn-block">Delete Event</button>
+                        </div>
+                    </div>
+                </div>
+
+                {% include 'modals/user/statistics.twig' ignore missing with {'event': event} %}
+
+                {{ csrf.ajax | raw }}
+                
+            </form>
+        </article>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+    <script src="/js/admin/events/view.js"></script>
+{% endblock %}

@@ -1,0 +1,50 @@
+<div id="view-participants-modal-{{ event.id }}" class="modal fade view-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View Event Participants</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                {% if participants | length == 0 %}
+
+                    <div class="row mt-sm-4 no-participants-text">
+                        <div class="text-center"><h5>There are no participants for this event yet.</h5></div>
+                    </div>
+
+                {% endif %}
+
+                <div class="row mt-sm-4 justify-content-center participants-container">
+
+                    {% for participant in participants %}
+
+                        <div class="card small-artist-card me-3 mb-3" id="participant_{{ participant.id }}">
+                            <img src="{{ participant.profile_picture ? participant.profile_picture : '/uploads/profile-pictures/0.jpg' }}" class="card-img-top mt-2 artist-card-picture image" alt="{{ participant.getFullName() }} Event Participant Picture">
+                            <div class="card-body d-flex flex-column text-center">
+                                <h5>{{ participant.getFullName() }}</h5>
+                                <a href="{{ url_for('artist.details', { username: participant.username }) }}" class="btn btn-primary">View Details</a>
+                                
+                                {% if attribute(participant, 'event_' ~ event.id ~ '_artist_approved') is null %}
+
+                                    <p>Artist pending</p>
+
+                                {% elseif attribute(participant, 'event_' ~ event.id ~ '_artist_approved') == false %}
+
+                                    <p>Artist rejected</p>
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                    <input type="hidden" id="event-id" name="event_id" value="{{ event.id }}">
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

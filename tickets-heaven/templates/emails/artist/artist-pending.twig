@@ -1,0 +1,50 @@
+{% extends 'emails/base.twig' %}
+
+{% block styles %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    {% if type == 'admin' %}
+
+         <p>You have been added as a participant in event '{{ eventName }}'. You can reject the event from your <a href="{{ baseUrl }}/artist">Artist Panel</a>.</p>
+
+    {% else %}
+
+         <p>You have been invited to participate in event '{{ eventName }}'. Please respond to the invitation from your <a href="{{ baseUrl }}/artist">Artist Panel</a>.</p>
+
+    {% endif %}
+
+    {% if eventParticipants | length > 0 %}
+
+        <p>The other participants in this event are the following:</p>
+    
+        <table cellpadding="12">
+            <tr>
+                <th>Participant</th>
+                <th>Status</th>
+            </tr>
+            {% for participant in eventParticipants %}
+                
+                <tr>
+                    <td>{{ participant.getFullName() }}</td>
+                    <td>{{ participant.pivot.artist_approved == true ? 'Approved' : (participant.pivot.artist_approved is null ? 'Pending' : 'Rejected') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+
+        <p>There are no other participants in this event yet.</p>
+
+    {% endif %}
+
+    <p>For more details please visit your <a href="{{ baseUrl }}/artist">Artist Panel</a>.</p>
+
+{% endblock %}

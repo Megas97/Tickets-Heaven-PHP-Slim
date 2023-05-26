@@ -1,0 +1,148 @@
+<div id="view-details-modal-{{ venue.id }}" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View Venue Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-sm-4 justify-content-center">
+                    <div class="card big-venue-card mb-sm-3">
+                        <img src="{{ venue.venue_picture ? venue.venue_picture : '/uploads/venue-pictures/0.jpg' }}" class="card-img-top mt-2 big-venue-card-picture image" alt="{{ venue.name }} Venue Picture">
+                        <div class="card-body d-flex flex-column">
+                            <div class="row mt-auto mb-md-3">
+                                <div class="col-md-6">
+                                    <h5 class="card-title"><span class="name">{{ venue.name }}</span></h5>
+                                    <p class="card-text venue-description"><span class="description">{{ venue.description }}</span></p>
+                                    <p class="card-text">
+                                        Opens at <span class="opens">{{ venue.opens }}</span>, closes at <span class="closes">{{ venue.closes }}</span>.
+                                        <br>
+                                        Active events: <span class="active-events">{{ venue.activeEvents | length }}</span>
+                                        <br>
+                                        Inactive events: <span class="inactive-events">{{ venue.inactiveEvents | length }}</span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 mt-3 mt-md-0">
+                                    <p class="card-text mb-md-0">
+                                        <span class="d-block cut-text-off" title="{{ venue.address }}">{{ venue.address }}</span>
+                                        <div class="mapouter">
+                                            <div class="gmap_canvas">
+                                                <iframe class="map" src="https://maps.google.com/maps?q={{ venue.address | url_encode }}&ie=UTF8&iwloc=&output=embed"></iframe>
+                                            </div>
+                                        </div>
+                                    </p>
+                                    <p class="card-text">
+                                        Tel: <a href="tel:{{ venue.phoneCode.code ~ ' ' ~ venue.phone_number}}" class="phone"><span class="phone_code">{{ venue.phoneCode.code }}</span> <span class="phone_number">{{ venue.phone_number}}</span></a>
+                                        <br>
+                                        <span class="phone_code_country">{{ venue.phoneCode.country.name }}</span>, <span class="phone_code_continent">{{ venue.phoneCode.country.continent.name }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            {% if events | length > 0 %}
+
+                                <hr class="mt-3 mb-3 d-inline">
+
+                                <p class="text-center">Active events</p>
+
+                                <div id="eventsCarousel{{ venue.id }}" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+
+                                        {% for event in events %}
+
+                                            <div class="carousel-item {{ loop.index0 == 0 ? 'active' : '' }}" data-event-id="{{ event.id }}" data-venue-id="{{ event.venue_id }}" data-bs-interval="5000">
+                                                <img src="{{ event.event_picture ? event.event_picture : '/uploads/event-pictures/0.jpg' }}" class="d-block w-100 venue-event-picture" alt="{{ event.name }} Event Picture">
+                                                <div class="carousel-caption d-md-block">
+                                                    
+                                                    {% include 'partials/event-happening-label.twig' ignore missing %}
+                                                    
+                                                    <br>
+                                                    <h5>{{ event.name }}</h5>
+                                                    <p class="carousel-card-description">{{ event.description }}</p>
+                                                    <a href="{{ url_for('event.details', { id: event.id }) }}" target="_blank" class="btn btn-primary">View Details</a>
+                                                </div>
+                                            </div>
+
+                                        {% endfor %}
+                                        
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#eventsCarousel{{ venue.id }}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#eventsCarousel{{ venue.id }}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+
+                            {% endif %}
+                            
+                            {% if inactiveEvents | length > 0 %}
+
+                                <hr class="mt-4 mb-3 d-inline">
+
+                                <p class="text-center">Inactive events</p>
+
+                                <div id="inactiveEventsCarousel{{ venue.id }}" class="carousel slide" data-bs-touch="true" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        {% for event in inactiveEvents %}
+                                            <div class="carousel-item {{ loop.index0 == 0 ? 'active' : '' }}" data-event-id="{{ event.id }}" data-venue-id="{{ event.venue_id }}" data-bs-interval="5000">
+                                                <img src="{{ event.event_picture ? event.event_picture : '/uploads/event-pictures/0.jpg' }}" class="d-block w-100 venue-event-picture" alt="{{ event.name }} Event Picture">
+                                                <div class="carousel-caption d-md-block">
+
+                                                    {% include 'partials/event-happening-label.twig' ignore missing %}
+
+                                                    <br>
+                                                    <h5>{{ event.name }}</h5>
+                                                    <p class="carousel-card-description">{{ event.description }}</p>
+
+                                                    {% set message = '' %}
+
+                                                    {% if event.host_id == 0 %}
+
+                                                        {% set message = message ~ 'Event currently has no host set' %}
+
+                                                    {% endif %}
+
+                                                    {% if event.owner_approved is null %}
+
+                                                        {% set message = message ~ '<br>Event not yet approved by venue owner' %}
+
+                                                    {% elseif event.owner_approved == 0 %}
+
+                                                        {% set message = message ~ '<br>Event rejected by venue owner' %}
+
+                                                    {% endif %}
+
+                                                    {% if message %}
+
+                                                        <p class="text-warning">{{ message | raw}}</p>
+
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#inactiveEventsCarousel{{ venue.id }}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#inactiveEventsCarousel{{ venue.id }}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

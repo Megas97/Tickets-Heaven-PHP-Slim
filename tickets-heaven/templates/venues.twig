@@ -1,0 +1,102 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    {{ owner.username != null ? (owner.username == auth.user.username ? 'My Venues' : owner.getFullName() ~ '\'s Venues') : 'Venues' }}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                
+                {% if owner %}
+
+                    <li class="breadcrumb-item"><a href="{{ url_for('owners.all') }}">Owners</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('owner.details', { username: owner.username }) }}">Owner Details</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Owner Venues</li>
+
+                {% else %}
+
+                    <li class="breadcrumb-item active" aria-current="page">Venues</li>
+
+                {% endif %}
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+
+        {% if owner %}
+
+            {% if owner.username == auth.user.username %}
+
+                {% if venues | length == 0 %}
+
+                    <p class="text-center">There are no venues owned by you</p>
+
+                {% else %}
+
+                    <p class="text-center">Viewing all venues owned by you</p>
+
+                {% endif %}
+
+            {% else %}
+
+                {% if venues | length == 0 %}
+
+                    <p class="text-center">There are no venues owned by <a href="{{ url_for('owner.details', { username: owner.username }) }}">{{ owner.getFullName() }}</a></p>
+
+                {% else %}
+
+                    <p class="text-center">Viewing all venues owned by <a href="{{ url_for('owner.details', { username: owner.username }) }}">{{ owner.getFullName() }}</a></p>
+
+                {% endif %}
+
+            {% endif %}
+
+        {% else %}
+
+            <p>&nbsp;</p>
+
+        {% endif %}
+
+        {% for venue in venues %}
+            <div class="card venue-card me-3 mb-3">
+                <img src="{{ venue.venue_picture ? venue.venue_picture : '/uploads/venue-pictures/0.jpg' }}" class="card-img-top mt-2 venue-card-picture img-fluid" alt="{{ venue.name }} Venue Picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ venue.name }}</h5>
+                    <p class="card-text">
+                        Opens at {{ venue.opens }}, closes at {{ venue.closes }}.
+                        <br>
+
+                        {% if owner %}
+
+                            <input type="hidden" class="hosted-events" value="{{ venue.hostedEvents }}">
+
+                            Events: <span class="events-count">{{ venue.hostedEvents | length }}</span>
+
+                        {% else %}
+
+                            Owned by <a href="{{ url_for('owner.details', { username: venue.owner.username }) }}">{{ venue.owner.getFullName() }}</a>.
+
+                        {% endif %}
+                    </p>
+                    <p class="card-text">
+                        Tel: <a href="tel:{{ venue.phoneCode.code ~ ' ' ~ venue.phone_number}}">{{ venue.phoneCode.code ~ ' ' ~ venue.phone_number}}</a>
+                        <br>
+                        {{ venue.phoneCode.country.name ~ ', ' ~ venue.phoneCode.country.continent.name }}
+                    </p>
+                    <a href="{{ url_for('venue.details', { id: venue.id }) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/venues.js"></script>
+{% endblock %}

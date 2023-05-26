@@ -1,0 +1,37 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Owners
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Owners</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row justify-content-center margin-top-minus-10">
+
+        {% for owner in owners %}
+            <div class="card owner-card me-3 mb-3">
+                <img src="{{ owner.profile_picture ? owner.profile_picture : '/uploads/profile-pictures/0.jpg' }}" class="card-img-top mt-2 owner-card-picture" alt="{{ owner.getFullName() }} Owner Picture">
+                <div class="card-body text-center">
+                    <h5 class="card-title mt-1 mb-3">{{ owner.getFullName() }}</h5>
+                    <a href="{{ url_for('owner.details', { username: owner.username }) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/owners.js"></script>
+{% endblock %}

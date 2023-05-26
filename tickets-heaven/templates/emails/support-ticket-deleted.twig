@@ -1,0 +1,18 @@
+{% extends 'emails/base.twig' %}
+
+{% block content %}
+    <p>A support ticket was just deleted at {{ siteTitle }}.</p>
+
+    <p>You can find the support ticket content below:</p>
+
+    <div>
+        <span>Sender email: {{ supportTicket.email }}</span><br>
+        <span>Sender first name: {{ supportTicket.first_name }}</span><br>
+        <span>Sender last name: {{ supportTicket.last_name }}</span><br>
+        <p>Subject: {{ supportTicket.subject }}</p>
+        <p>Message: {{ supportTicket.message }}</p>
+    </div>
+
+    <p>If this support ticket was deleted by mistake please email <a href = "mailto:{{ supportTicket.email }}">{{ supportTicket.email }}</a> to help them with their problem.</p>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+        {% block styles %}{% endblock %}
+        
+        <style>
+            #header {
+                margin-bottom: 40px;
+            }
+
+            footer {
+                margin-top: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <div id="header">
+
+                {% if auth.check and not disableAuthCheck %}
+                    <p>Hello {{ auth.user.getFullName() }},</p>
+                {% else %}
+                    {% if user %}
+                         <p>Hello {{ user.getFullName() }},</p>
+                    {% else %}
+                        <p>Hello there,</p>
+                    {% endif %}
+                {% endif %}
+                
+            </div>
+
+            {% block content %}{% endblock %}
+
+            <footer>
+                <p>Best regards,</p>
+                <p>The {{ siteTitle }} Team</p>
+                <p>{{ siteTitle }} {{ 'now' | date('Y') }} ©</p>
+            </footer>
+        </div>
+    </body>
+</html>

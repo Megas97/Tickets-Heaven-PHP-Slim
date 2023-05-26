@@ -1,0 +1,55 @@
+{% extends 'layouts/base.twig' %}
+
+{% block pageTitle %}
+    Venues
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('admin.panel') }}">Admin Panel</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Venues</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row mb-5 margin-top-minus-10">
+        <div class="col-sm-12 text-center">
+            <button type="button" id="add-venue-button" name="add-venue-button" class="btn btn-secondary d-inline-flex align-items-center"><i class="fa fa-plus me-2"></i>Add Venue</button>
+        </div>
+    </div>
+
+    <table id="venuesListTable" class="table w-100">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th class="min-desktop dropdown-filter">Phone Code</th>
+            <th class="min-desktop">Phone Number</th>
+            <th class="min-desktop">Phone</th>
+            <th class="min-desktop dropdown-filter">Opens</th>
+            <th class="min-desktop dropdown-filter">Closes</th>
+            <th class="min-desktop">Work Time</th>
+            <th class="dropdown-filter">Owner</th>
+            <th class="min-desktop">Actions</th>
+        </tr>
+      </thead>
+    </table>
+
+    {{ csrf.ajax | raw }}
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/admin/venues/all.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+{% endblock %}

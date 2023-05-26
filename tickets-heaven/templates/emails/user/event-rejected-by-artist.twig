@@ -1,0 +1,50 @@
+{% extends 'emails/base.twig' %}
+
+{% block styles %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <p>Artist {{ artist.getFullName() }} has rejected to participate in event '{{ eventName }}' which you are going to attend hosted in venue '{{ venueName }}'.</p>
+
+    {% if eventParticipants | length > 0 %}
+
+        <p>The participants in this event are the following:</p>
+    
+        <table cellpadding="12">
+            <tr>
+                <th>Participant</th>
+                <th>Status</th>
+            </tr>
+            {% for participant in eventParticipants %}
+                
+                <tr>
+                    <td>{{ participant.getFullName() }}</td>
+                    <td>{{ participant.pivot.artist_approved == true ? 'Approved' : (participant.pivot.artist_approved is null ? 'Pending' : 'Rejected') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+
+        <p>There are no participants in this event.</p>
+
+    {% endif %}
+    
+    {% if user.id %}
+
+        <p>For more details please visit your <a href="{{ baseUrl }}/orders">Orders</a>.</p>
+
+    {% else %}
+
+        <p>If you would like to keep track of your order history please <a href="{{ baseUrl }}/register">Register</a> and visit your <a href="{{ baseUrl }}/orders">Orders</a>.</p>
+
+    {% endif %}
+
+{% endblock %}

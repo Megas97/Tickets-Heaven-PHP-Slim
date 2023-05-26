@@ -1,0 +1,91 @@
+{% extends 'emails/base.twig' %}
+
+{% block styles %}
+    <style>
+        #event-picture {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        img {
+            margin-bottom: 20px !important;
+            width: 100%;
+            max-width: 320px;
+            height: 343px;
+        }
+
+        @media (min-width: 768px) {
+            img {
+                margin-right: 20px !important;
+            }
+        }
+
+        .ticket {
+            float: left;
+            text-align: center;
+        }
+
+        .ticket-label {
+            margin-bottom: 4px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>Thanks for using {{ siteTitle }}!</p>
+
+    <p>Below you'll find information about the event as well as the tickets you have purchased.</p>
+
+    <img id="event-picture" src="{{ base64EventImage }}" alt="Event Picture"></img><br>
+    <span>Event name: {{ event.name }}</span><br>
+    <span>Event venue: {{ venue.name }}</span><br>
+    <span>Event start: {{ event.start_date }} at {{ event.start_time }}</span><br>
+    <span>Event end: {{ event.end_date }} at {{ event.end_time }}</span><br>
+
+    <p>Event participants at the time of buying your ticket(s):</p>
+
+    <table cellpadding="12">
+        <tr>
+            <th>Participant</th>
+            <th>Status</th>
+        </tr>
+
+        {% for participant in eventParticipants %}
+            
+            <tr>
+                <td>{{ participant.getFullName() }}</td>
+                <td>{{ participant.pivot.artist_approved == true ? 'Approved' : (participant.pivot.artist_approved is null ? 'Pending' : 'Rejected') }}</td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <div id="tickets-container">
+        
+        {% for ticket in tickets %}
+
+            <div class="ticket">
+                <p class="ticket-label">Ticket #{{ ticket.ticketNumber }}</p>
+                <img src="{{ ticket.qrCode }}" alt="Ticket #{{ ticket.ticketNumber }}"></img>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div style="clear: left;"></div>
+
+{% endblock %}
