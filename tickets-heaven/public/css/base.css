@@ -1,0 +1,745 @@
+body {
+    padding-top: 48px;
+}
+
+.nav-active {
+    font-weight: 700;
+}
+
+.toast, .toast-body {
+    width: 38vw;
+}
+
+@media (max-width: 575px) {
+    .toast, .toast-body {
+        width: 99vw;
+    }
+
+    .card {
+        border: none;
+        margin-top: -2px;
+        padding-top: 10px;
+    }
+
+    #navbar {
+        border-bottom: 1px solid lightgray;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .toast, .toast-body {
+        width: 90vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .toast, .toast-body {
+        width: 80vw;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .toast, .toast-body {
+        width: 70vw;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .toast, .toast-body {
+        width: 60vw;
+    }
+}
+
+#toastMessageContainer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10000000;
+}
+
+#toastMessage {
+    border-radius: 8px;
+    position: absolute;
+    top: 80px;
+}
+
+.info-toast {
+    color: white;
+    background-color: green;
+}
+
+.error-toast {
+    color: white;
+    background-color: red;
+}
+
+#navbar-profile-picture {
+    width: 30px;
+    height: 30px;
+}
+
+.navbar {
+    min-height: 62px !important;
+}
+
+html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+}
+
+/*////////////////////////////////////////////////////////*/
+
+.wide-card-body {
+    max-width: 700px;
+    width: 100%;
+}
+
+.wide-select {
+    width: calc(100% - 42px);
+}
+
+.fa {
+    height: 24px;
+    line-height: inherit !important;
+    vertical-align: middle;
+}
+
+.copy-button, .clear-button, .input-group-text {
+    height: 100%;
+}
+
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.btn-facebook {
+    width: 190px;
+    height: 38px;
+    background-color: #405D9D;
+    color: #fff;
+}
+
+.btn-github {
+    width: 190px;
+    height: 38px;
+    background-color: #171515;
+    color: #fff;
+}
+
+.btn-facebook:hover {
+    color: #fff;
+}
+
+.btn-github:hover {
+    color: #fff;
+}
+
+#remember-me {
+    max-width: 18px;
+}
+
+#forgot-password-link-stacked {
+    display: none;
+}
+
+@media (max-width: 333px) {
+    #forgot-password-link-stacked {
+        display: block;
+    }
+
+    #forgot-password-link-end {
+        display: none;
+    }
+
+    .price-container, .price-container-extra-currency {
+        margin-bottom: 4px;
+    }
+}
+
+.checkbox-fix {
+    max-width: 18px;
+}
+
+#view-profile-picture {
+    width: 300px;
+    height: 300px;
+}
+
+#view-venue-picture, #view-event-picture {
+    width: 600px;
+    height: 230px;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+select.disabled {
+    background-color: #DFECEF;
+}
+
+.mapouter {
+    height: 150px;
+    width: 100%;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 100%;
+    width: 100%;
+}
+
+.venue-card {
+    width: 288px;
+}
+
+.venue-card-picture {
+    width: 100%;
+    height: 140px;
+}
+
+.event-card {
+    width: 288px;
+}
+
+.event-card-picture {
+    width: 100%;
+    height: 140px;
+}
+
+.big-event-card {
+    width: 700px;
+    height: 100%;
+}
+
+.big-event-card-picture {
+    width: 100%;
+    height: 240px;
+}
+
+.event-description {
+    height: 88px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.big-venue-card {
+    width: 700px;
+}
+
+.big-venue-card-picture {
+    width: 100%;
+    height: 240px;
+}
+
+.venue-event-picture {
+    width: 100%;
+    height: 320px;
+}
+
+.venue-description {
+    height: 118px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+  
+.comment-poster-dot {
+    height: 7px;
+    width: 7px;
+    margin-top: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.comment-box {
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+@media (min-width: 768px) {
+    #comment {
+        max-width: 170px;
+    }
+}
+
+.carousel-caption {
+    opacity: 0;
+    transition: 200ms ease-in-out;
+}
+
+.carousel-item:hover .carousel-caption {
+    opacity: 1;
+}
+
+.venue-event-picture {
+    opacity: 1;
+    transition: 200ms ease-in-out;
+}
+
+.carousel-item:hover .venue-event-picture,
+.multi-card-carousel .carousel-item:hover .multi-carousel-event-card-picture,
+.multi-card-carousel .carousel-item:hover .multi-carousel-artist-card-picture,
+.multi-card-carousel .carousel-item:hover .multi-carousel-venue-card-picture {
+    filter: brightness(40%);
+}
+
+#ordersCarousel .carousel-control-next, #ordersCarousel .carousel-control-prev {
+    filter: invert(100%);
+}
+
+#choose-ticket-quantity::-webkit-outer-spin-button, #choose-ticket-quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#choose-ticket-quantity {
+    -moz-appearance: textfield;
+}
+
+.price-container {
+    width: 110px;
+}
+
+.price-container-extra-currency {
+    width: 220px;
+}
+
+#quantity-container, .price-container, .price-container-extra-currency, .happening-text {
+    position: relative;
+    user-select: none;
+}
+
+#quantity-container::after, .price-container::after, .price-container-extra-currency::after, .happening-paragraph::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#choose-ticket-quantity {
+    width: 44px !important;
+    height: 100%;
+}
+
+.price-currency {
+    width: 110px !important;
+    height: 100%;
+}
+
+.price-currency-extra-currency {
+    width: 220px !important;
+    height: 100%;
+}
+
+#decrease-ticket-quantity:focus, #increase-ticket-quantity:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.no-comments {
+    margin-top: 324px !important;
+}
+
+@media (max-width: 768px) {
+    .no-comments {
+        margin-top: 0px !important;
+    }
+}
+
+.artist-card {
+    width: 288px;
+}
+
+.artist-card-picture {
+    width: 100%;
+    height: 100%;
+}
+
+.big-artist-card {
+    width: 700px;
+    height: 100%;
+}
+
+.big-artist-card-picture {
+    width: 45%;
+    height: 45%;
+    margin: auto;
+    object-fit: contain;
+}
+
+.small-artist-card {
+    width: 200px;
+}
+
+.artist-description {
+    height: 120px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 15px;
+}
+
+.host-card {
+    width: 288px;
+}
+
+.host-card-picture {
+    width: 100%;
+    height: 100%;
+}
+
+.big-host-card {
+    width: 700px;
+    height: 100%;
+}
+
+.big-host-card-picture {
+    width: 45%;
+    height: 45%;
+    margin: auto;
+    object-fit: contain;
+}
+
+.host-description {
+    height: 120px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 15px;
+}
+
+.owner-card {
+    width: 288px;
+}
+
+.owner-card-picture {
+    width: 100%;
+    height: 100%;
+}
+
+.big-owner-card {
+    width: 700px;
+    height: 100%;
+}
+
+.big-owner-card-picture {
+    width: 45%;
+    height: 45%;
+    margin: auto;
+    object-fit: contain;
+}
+
+.owner-description {
+    height: 120px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 15px;
+}
+
+.admin-no-top-button {
+    margin-top: 14px;
+}
+
+.bootstrap-select {
+    border: 1px solid black;
+}
+
+.comment-timestamp {
+    color: grey;
+}
+
+@media (max-width: 767px) {
+    .desktop-comments {
+        display: none;
+    }
+
+    .mobile-comments {
+        display: block;
+    }
+
+    .cut-comment-poster-text-off {
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .comment-poster-width {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-comments {
+        display: none;
+    }
+
+    .desktop-comments {
+        display: flex;
+    }
+
+    .cut-text-off {
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .comment-poster-width {
+        max-width: 50%;
+    }
+}
+
+.extra-info {
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .extra-info {
+        display: inline-block;
+    }
+}
+
+#participantsButtonContainer {
+    margin-bottom: 3px;
+}
+
+.card-no-margin-and-padding {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.img-text-container {
+    position: relative;
+}
+
+.img-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 50%;
+    height: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.ordered-ticket {
+    width: 300px;
+    height: 300px;
+}
+
+.logo-image {
+    width: 700px;
+}
+
+/*////////////////////////////////////////////////////////*/
+
+@media (max-width: 767px) {
+    #multiArtistsCarousel {
+        display: flex;
+        justify-content: center;
+    }
+
+    #multiArtistsCarousel .carousel-inner {
+        width: 256px;
+    }
+}
+
+@media (min-width: 768px) {
+    .multi-card-carousel .carousel-inner {
+        display: flex;
+        padding: 1px; /* very important! */
+    }
+
+    .multi-card-carousel .event-item, .multi-card-carousel .venue-item {
+        margin-right: 0;
+        flex: 0 0 33.333333%;
+        display: block;
+    }
+
+    .multi-card-carousel .artist-item {
+        margin-right: 0;
+        flex: 0 0 20%;
+        display: block;
+    }
+}
+
+.multi-card-carousel .card {
+    margin: 0 .5em;
+    border: none;
+}
+
+.multi-card-carousel .carousel-control-prev {
+    filter: invert(100%);
+    width: 6vh;
+    height: 6vh;
+    margin-left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.multi-card-carousel .carousel-control-next {
+    filter: invert(100%);
+    width: 6vh;
+    height: 6vh;
+    margin-right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.multi-carousel-event-card-picture, .multi-carousel-venue-card-picture {
+    width: 100%;
+    height: 240px;
+    opacity: 1;
+    transition: 200ms ease-in-out;
+}
+
+.multi-carousel-artist-card {
+    width: 240px;
+}
+
+.multi-carousel-artist-card-picture {
+    width: 240px;
+    height: 240px;
+    opacity: 1;
+    transition: 200ms ease-in-out;
+}
+
+.panel-button {
+    width: 300px;
+    opacity: 1;
+    transition: 200ms ease-in-out;
+}
+
+.margin-top-minus-10 {
+    margin-top: -10px;
+}
+
+#register-button-container, #login-button-container {
+    display: block;
+}
+
+@media (min-width: 400px) {
+    #register-button-container {
+        display: flex;
+    }
+}
+
+@media (min-width: 360px) {
+    #login-button-container {
+        display: flex;
+    }
+}
+
+#non-breaking-space {
+    display: flex;
+}
+
+@media (max-width: 320px) {
+    #profile-buttons-container {
+        flex-direction: column;
+    }
+
+    #non-breaking-space {
+        height: 4px;
+    }
+}
+
+@media (max-width: 410px) {
+    .view-user-action-buttons {
+        flex-direction: column;
+    }
+
+    .view-user-action-buttons #delete-profile-button {
+        margin-left: 4px;
+    }
+
+    .view-user-action-buttons #update-profile-button, .view-user-action-buttons #view-user-orders {
+        margin-right: 16px;
+    }
+
+    #non-breaking-space {
+        height: 4px;
+    }
+}
+
+@media (max-width: 375px) {
+    .view-event-action-buttons, .view-venue-action-buttons {
+        flex-direction: column;
+    }
+
+    .view-event-action-buttons #view-event-statistics-button, .view-event-action-buttons #delete-event-button,
+    .view-venue-action-buttons #view-venue-statistics-button, .view-venue-action-buttons #delete-venue-button {
+        margin-left: 18px;
+    }
+
+    #non-breaking-space {
+        height: 4px;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 767px) {
+    .view-event-action-buttons #view-event-statistics-button, .view-venue-action-buttons #view-venue-statistics-button {
+        margin-left: 18px;
+    }
+}
+
+@media (min-width: 767px) {
+    .margin-left-minus-46 {
+        margin-left: -46px;
+    }
+
+    .margin-left-minus-62 {
+        margin-left: -62px;
+    }
+}
+
+.medium-card-body {
+    width: 100%;
+    max-width: 520px;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+#navbar-logo {
+    width: 30px;
+    height: 24px;
+}
+
+#buy-ticket-button {
+	min-width: 106px;
+}
