@@ -16,7 +16,7 @@ phinx seed:run -s CurrenciesDbInfo
 phinx seed:run -s PhoneCodesDbInfo
 ```
 
-Also make sure to create an .env file with the following format in the 'tickets-heaven' folder and update it with your details:
+Also make sure to create a .env file with the following format in the 'tickets-heaven' folder and update it with your details:
 
 ```
 APP_URL=http://localhost
