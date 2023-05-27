@@ -17,3 +17,5 @@ phinx seed:run -s CountriesDbInfo
 phinx seed:run -s CurrenciesDbInfo
 
 phinx seed:run -s PhoneCodesDbInfo
+
+Also make sure to update the .env file with your details.
