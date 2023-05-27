@@ -8,15 +8,13 @@ Please download the above zip file in order to get everything working correctly.
 
 Make sure to create a database called 'tickets-heaven' in your PMA and then run the following commands to create and seed the tables:
 
+```
 phinx migrate
-
 phinx seed:run -s ContinentsDbInfo
-
 phinx seed:run -s CountriesDbInfo
-
 phinx seed:run -s CurrenciesDbInfo
-
 phinx seed:run -s PhoneCodesDbInfo
+```
 
 Also make sure to create an .env file with the following format and update it with your details:
 
@@ -67,5 +65,4 @@ MAIL_PASSWORD=
 MAIL_HTML=true
 MAIL_SUPPORT=support@tickets-heaven.bg
 MAIL_DISABLE=0
-
 ```
